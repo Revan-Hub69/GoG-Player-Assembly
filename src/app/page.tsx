@@ -63,13 +63,12 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <Users className="w-5 h-5 text-white" />
-              </div>
+              <img src="/logo.svg" alt="GoG Player Assembly" className="w-8 h-8" />
               <span className="text-xl font-bold text-gray-900">GoG Player Assembly</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <a href="#features" className="text-gray-600 hover:text-gray-900 transition-colors">Features</a>
+              <Link href="/proposals" className="text-gray-600 hover:text-gray-900 transition-colors">Proposals</Link>
               <a href="#how-it-works" className="text-gray-600 hover:text-gray-900 transition-colors">How it Works</a>
               <a href="#support" className="text-gray-600 hover:text-gray-900 transition-colors">Support</a>
               <Link href="/auth/login">
@@ -153,11 +152,11 @@ export default function Home() {
                       <div className="text-sm text-gray-600">Participation</div>
                     </div>
                     <div className="text-center p-4 bg-green-50 rounded-lg">
-                      <div className="text-2xl font-bold text-green-600">42</div>
-                      <div className="text-sm text-gray-600">Proposals</div>
+                      <div className="text-2xl font-bold text-green-600">3</div>
+                      <div className="text-sm text-gray-600">Active Proposals</div>
                     </div>
                     <div className="text-center p-4 bg-orange-50 rounded-lg">
-                      <div className="text-2xl font-bold text-orange-600">0.34</div>
+                      <div className="text-2xl font-bold text-orange-600">0.40</div>
                       <div className="text-sm text-gray-600">CSPI Index</div>
                     </div>
                   </div>
@@ -552,9 +551,7 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                  <Users className="w-5 h-5 text-white" />
-                </div>
+                <img src="/logo.svg" alt="GoG Player Assembly" className="w-8 h-8" />
                 <span className="text-xl font-bold">GoG Player Assembly</span>
               </div>
               <p className="text-gray-400 text-sm">
@@ -567,6 +564,7 @@ export default function Home() {
               <ul className="space-y-2 text-sm text-gray-400">
                 <li><Link href="/auth/register" className="hover:text-white transition-colors">Get Started</Link></li>
                 <li><Link href="/auth/login" className="hover:text-white transition-colors">Sign In</Link></li>
+                <li><Link href="/proposals" className="hover:text-white transition-colors">Proposals</Link></li>
                 <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
                 <li><a href="#how-it-works" className="hover:text-white transition-colors">How it Works</a></li>
               </ul>
