@@ -12,12 +12,15 @@ interface Proposal {
   category: string
   averageImpact: number
   totalVotes: number
+  color: string
+  icon: string
 }
 
 interface Vote {
   proposalId: string
   kingdom: string
   impactScore: number
+  timestamp: number
 }
 
 const proposals: Proposal[] = [
@@ -27,7 +30,9 @@ const proposals: Proposal[] = [
     description: 'Il gioco è diventato troppo casuale. Si può perdere al 30% e vincere al 30% con le stesse formazioni consecutive. La casualità ha troppa importanza ora, denaturando la strategia e la bravura dei giocatori.',
     category: 'Gameplay',
     averageImpact: 0,
-    totalVotes: 0
+    totalVotes: 0,
+    color: 'from-red-500 to-pink-600',
+    icon: '⚔️'
   },
   {
     id: '2', 
@@ -35,7 +40,9 @@ const proposals: Proposal[] = [
     description: 'Capitano spesso giocatori soli che rovinano i regni facendo smettere altri giocatori. Proposta: un nuovo titolo per le prigioni "Nemico del Regno" - un giocatore con questo titolo non può mettere scudo né teletrasportarsi per tutto il tempo in cui ha il titolo.',
     category: 'Social',
     averageImpact: 0,
-    totalVotes: 0
+    totalVotes: 0,
+    color: 'from-purple-500 to-indigo-600',
+    icon: '👑'
   },
   {
     id: '3',
@@ -43,7 +50,9 @@ const proposals: Proposal[] = [
     description: 'Molti giocatori hanno speso tantissimi materiali e tempo, ma ora l&apos;aumento del costo in biscotti non fa quasi più sfruttare le skill costosissime implementate. Proposta: dimezzare il costo dei biscotti e dimezzare le truppe che si possono prendere.',
     category: 'Economy',
     averageImpact: 0,
-    totalVotes: 0
+    totalVotes: 0,
+    color: 'from-emerald-500 to-teal-600',
+    icon: '💰'
   }
 ]
 
@@ -51,16 +60,8 @@ export default function Home() {
   const [votes, setVotes] = useState<Vote[]>([])
   const [proposalStats, setProposalStats] = useState<Proposal[]>(proposals)
   const [votingData, setVotingData] = useState<{[key: string]: {kingdom: string, score: string}}>({})
-
-  // Carica i voti dal localStorage
-  useEffect(() => {
-    const savedVotes = localStorage.getItem('gog-votes')
-    if (savedVotes) {
-      const parsedVotes = JSON.parse(savedVotes)
-      setVotes(parsedVotes)
-      updateProposalStats(parsedVotes)
-    }
-  }, [])
+  const [isLoading, setIsLoading] = useState(true)
+  const [hoveredProposal, setHoveredProposal] = useState<string | null>(null)
 
   const updateProposalStats = (allVotes: Vote[]) => {
     const updatedProposals = proposals.map(proposal => {
@@ -79,37 +80,47 @@ export default function Home() {
     setProposalStats(updatedProposals)
   }
 
+  // Carica i voti dal localStorage
+  useEffect(() => {
+    const savedVotes = localStorage.getItem('gog-premium-votes')
+    if (savedVotes) {
+      const parsedVotes = JSON.parse(savedVotes)
+      setVotes(parsedVotes)
+      updateProposalStats(parsedVotes)
+    }
+    
+    // Simula loading per effetto premium
+    setTimeout(() => setIsLoading(false), 1500)
+  }, [])
+
   const handleVote = (proposalId: string) => {
     const data = votingData[proposalId]
     if (!data || !data.kingdom || !data.score) {
-      alert('Inserisci regno e voto per continuare')
       return
     }
 
     const score = parseInt(data.score)
     if (score < 1 || score > 10) {
-      alert('Il voto deve essere tra 1 e 10')
       return
     }
 
     const newVote: Vote = {
       proposalId,
       kingdom: data.kingdom,
-      impactScore: score
+      impactScore: score,
+      timestamp: Date.now()
     }
 
     const updatedVotes = [...votes, newVote]
     setVotes(updatedVotes)
-    localStorage.setItem('gog-votes', JSON.stringify(updatedVotes))
+    localStorage.setItem('gog-premium-votes', JSON.stringify(updatedVotes))
     updateProposalStats(updatedVotes)
 
-    // Reset form
+    // Reset form con animazione
     setVotingData(prev => ({
       ...prev,
       [proposalId]: { kingdom: '', score: '' }
     }))
-
-    alert('Voto registrato! Grazie per il feedback.')
   }
 
   const updateVotingData = (proposalId: string, field: 'kingdom' | 'score', value: string) => {
@@ -129,119 +140,224 @@ export default function Home() {
 
   const totalVotes = proposalStats.reduce((sum, p) => sum + p.totalVotes, 0)
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="relative">
+            <div className="w-32 h-32 border-4 border-purple-500/30 rounded-full animate-spin border-t-purple-500"></div>
+            <div className="absolute inset-0 w-32 h-32 border-4 border-pink-500/30 rounded-full animate-spin border-t-pink-500 animate-reverse" style={{animationDelay: '0.5s'}}></div>
+          </div>
+          <h2 className="text-2xl font-bold text-white mt-8 mb-4">GoG Player Assembly</h2>
+          <p className="text-purple-300 animate-pulse">Caricamento esperienza premium...</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-pink-900/20"></div>
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }}></div>
+      </div>
+      
+      {/* Floating Orbs */}
+      <div className="absolute top-20 left-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-20 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+
       {/* Header */}
-      <div className="bg-white border-b">
+      <div className="relative z-10 backdrop-blur-xl bg-white/5 border-b border-white/10">
         <div className="container mx-auto px-4 py-8">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Guns of Glory - Feedback Community
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl mb-6 shadow-2xl shadow-purple-500/25">
+              <span className="text-3xl">⚡</span>
+            </div>
+            <h1 className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-pink-200 mb-6 leading-tight">
+              GoG Player Assembly
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Vota anonimamente su quanto ogni proposta ti fa venir voglia di smettere di spendere nel gioco.
-              Scala da 1 (nessun impatto) a 10 (smetterei completamente di spendere).
+            <p className="text-xl text-purple-200 max-w-4xl mx-auto leading-relaxed">
+              La piattaforma premium per il feedback della community. Vota anonimamente su quanto ogni proposta 
+              impatta la tua voglia di investire nel gioco.
             </p>
+            <div className="flex items-center justify-center space-x-8 mt-8 text-sm text-purple-300">
+              <div className="flex items-center">
+                <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+                Completamente Anonimo
+              </div>
+              <div className="flex items-center">
+                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></div>
+                Real-time Analytics
+              </div>
+              <div className="flex items-center">
+                <div className="w-2 h-2 bg-purple-400 rounded-full mr-2 animate-pulse"></div>
+                Premium Experience
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
-        {/* Indice Generale */}
-        <Card className="mb-8 border-2 border-orange-200">
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl text-orange-600">
-              Indice Generale di Impatto sulla Spesa
-            </CardTitle>
-            <CardDescription>
-              Media ponderata di tutte le proposte
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="text-center">
-            <div className="text-6xl font-bold text-orange-600 mb-4">
-              {totalVotes > 0 ? overallAverage.toFixed(1) : '0.0'}
-            </div>
-            <div className="text-lg text-gray-600 mb-4">
-              su 10 (basato su {totalVotes} voti totali)
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-4">
-              <div 
-                className="bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 h-4 rounded-full transition-all duration-500"
-                style={{ width: `${totalVotes > 0 ? (overallAverage / 10) * 100 : 0}%` }}
-              ></div>
-            </div>
-            <div className="flex justify-between text-xs text-gray-500 mt-2">
-              <span>Nessun Impatto</span>
-              <span>Impatto Moderato</span>
-              <span>Smetterei di Spendere</span>
-            </div>
-          </CardContent>
-        </Card>
+      <div className="relative z-10 container mx-auto px-4 py-12">
+        {/* Dashboard Premium */}
+        <div className="mb-12">
+          <Card className="backdrop-blur-xl bg-white/10 border-white/20 shadow-2xl shadow-purple-500/10">
+            <CardHeader className="text-center pb-8">
+              <CardTitle className="text-3xl font-bold text-white mb-4">
+                🎯 Indice Generale di Impatto
+              </CardTitle>
+              <CardDescription className="text-purple-200 text-lg">
+                Sentiment della community sulla voglia di investire
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-center">
+              <div className="relative inline-block">
+                <div className="text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 mb-6">
+                  {totalVotes > 0 ? overallAverage.toFixed(1) : '0.0'}
+                </div>
+                <div className="absolute -inset-4 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-xl"></div>
+              </div>
+              
+              <div className="text-lg text-purple-200 mb-8">
+                su 10 • {totalVotes} voti dalla community
+              </div>
+              
+              {/* Premium Progress Bar */}
+              <div className="relative w-full max-w-2xl mx-auto">
+                <div className="h-6 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm">
+                  <div 
+                    className="h-full bg-gradient-to-r from-green-400 via-yellow-400 via-orange-400 to-red-500 rounded-full transition-all duration-1000 ease-out shadow-lg"
+                    style={{ width: `${totalVotes > 0 ? (overallAverage / 10) * 100 : 0}%` }}
+                  >
+                    <div className="h-full bg-white/20 animate-pulse"></div>
+                  </div>
+                </div>
+                <div className="flex justify-between text-xs text-purple-300 mt-3">
+                  <span>💚 Nessun Impatto</span>
+                  <span>⚠️ Impatto Moderato</span>
+                  <span>🔥 Smetterei di Investire</span>
+                </div>
+              </div>
 
-        {/* Proposte */}
+              {/* Live Stats */}
+              <div className="grid grid-cols-3 gap-6 mt-12">
+                <div className="backdrop-blur-sm bg-white/5 rounded-2xl p-6 border border-white/10">
+                  <div className="text-3xl font-bold text-green-400">{proposalStats.filter(p => p.averageImpact < 4).length}</div>
+                  <div className="text-green-300 text-sm">Basso Impatto</div>
+                </div>
+                <div className="backdrop-blur-sm bg-white/5 rounded-2xl p-6 border border-white/10">
+                  <div className="text-3xl font-bold text-yellow-400">{proposalStats.filter(p => p.averageImpact >= 4 && p.averageImpact < 7).length}</div>
+                  <div className="text-yellow-300 text-sm">Medio Impatto</div>
+                </div>
+                <div className="backdrop-blur-sm bg-white/5 rounded-2xl p-6 border border-white/10">
+                  <div className="text-3xl font-bold text-red-400">{proposalStats.filter(p => p.averageImpact >= 7).length}</div>
+                  <div className="text-red-300 text-sm">Alto Impatto</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Premium Proposals */}
         <div className="space-y-8">
           {proposalStats.map((proposal) => (
-            <Card key={proposal.id} className="border-0 shadow-lg">
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-3 mb-3">
-                      <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
-                        {proposal.category}
-                      </span>
-                      <div className="flex items-center text-orange-600">
-                        <span className="text-sm font-medium">
-                          Impatto: {proposal.averageImpact}/10 ({proposal.totalVotes} voti)
-                        </span>
+            <Card 
+              key={proposal.id} 
+              className={`backdrop-blur-xl bg-white/10 border-white/20 shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:shadow-purple-500/20 ${
+                hoveredProposal === proposal.id ? 'ring-2 ring-purple-400/50' : ''
+              }`}
+              onMouseEnter={() => setHoveredProposal(proposal.id)}
+              onMouseLeave={() => setHoveredProposal(null)}
+            >
+              <CardHeader className="relative overflow-hidden">
+                <div className={`absolute inset-0 bg-gradient-to-r ${proposal.color} opacity-10`}></div>
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-4 mb-4">
+                        <div className={`w-16 h-16 bg-gradient-to-br ${proposal.color} rounded-2xl flex items-center justify-center text-2xl shadow-lg`}>
+                          {proposal.icon}
+                        </div>
+                        <div>
+                          <span className={`px-4 py-2 bg-gradient-to-r ${proposal.color} text-white rounded-full text-sm font-bold shadow-lg`}>
+                            {proposal.category}
+                          </span>
+                          <div className="flex items-center mt-2 text-purple-300">
+                            <span className="text-lg font-bold text-white">
+                              {proposal.averageImpact}/10
+                            </span>
+                            <span className="ml-2 text-sm">
+                              ({proposal.totalVotes} voti)
+                            </span>
+                          </div>
+                        </div>
                       </div>
+                      <CardTitle className="text-2xl font-bold text-white mb-4 leading-tight">
+                        {proposal.title}
+                      </CardTitle>
+                      <CardDescription className="text-purple-200 text-base leading-relaxed">
+                        {proposal.description}
+                      </CardDescription>
                     </div>
-                    <CardTitle className="text-2xl mb-3">{proposal.title}</CardTitle>
-                    <CardDescription className="text-base leading-relaxed">
-                      {proposal.description}
-                    </CardDescription>
                   </div>
                 </div>
               </CardHeader>
               
-              <CardContent>
-                {/* Indicatore di Impatto */}
-                <div className="mb-6 p-4 bg-orange-50 rounded-lg">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-medium text-gray-900">Impatto sulla Voglia di Spendere</span>
-                    <span className="text-2xl font-bold text-orange-600">
-                      {proposal.averageImpact}/10
-                    </span>
+              <CardContent className="relative">
+                {/* Impact Visualization */}
+                <div className="mb-8 p-6 backdrop-blur-sm bg-white/5 rounded-2xl border border-white/10">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="font-bold text-white text-lg">Impatto sulla Voglia di Investire</span>
+                    <div className="flex items-center space-x-2">
+                      <div className={`text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r ${proposal.color}`}>
+                        {proposal.averageImpact}/10
+                      </div>
+                      {proposal.averageImpact >= 7 && <span className="text-red-400">🔥</span>}
+                      {proposal.averageImpact >= 4 && proposal.averageImpact < 7 && <span className="text-yellow-400">⚠️</span>}
+                      {proposal.averageImpact < 4 && <span className="text-green-400">💚</span>}
+                    </div>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-3">
-                    <div 
-                      className="bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 h-3 rounded-full transition-all duration-500"
-                      style={{ width: `${(proposal.averageImpact / 10) * 100}%` }}
-                    ></div>
+                  
+                  <div className="relative">
+                    <div className="h-4 bg-white/10 rounded-full overflow-hidden">
+                      <div 
+                        className={`h-full bg-gradient-to-r ${proposal.color} rounded-full transition-all duration-1000 ease-out shadow-lg`}
+                        style={{ width: `${(proposal.averageImpact / 10) * 100}%` }}
+                      >
+                        <div className="h-full bg-white/30 animate-pulse"></div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-xs text-gray-600 mt-1">
+                  
+                  <div className="text-sm text-purple-300 mt-2">
                     {proposal.totalVotes > 0 
-                      ? `Basato su ${proposal.totalVotes} voti`
-                      : 'Nessun voto ancora registrato'
+                      ? `Basato su ${proposal.totalVotes} voti della community`
+                      : 'Sii il primo a votare questa proposta'
                     }
                   </div>
                 </div>
 
-                {/* Form di Voto */}
-                <div className="border-t pt-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Vota Anonimamente</h4>
-                  <div className="grid md:grid-cols-3 gap-4">
+                {/* Premium Voting Form */}
+                <div className="backdrop-blur-sm bg-white/5 rounded-2xl p-6 border border-white/10">
+                  <h4 className="font-bold text-white mb-6 text-lg">🗳️ Vota Anonimamente</h4>
+                  <div className="grid md:grid-cols-3 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-bold text-purple-200 mb-3">
                         Regno di Rappresentanza
                       </label>
                       <Input
                         placeholder="es. Regno 123"
                         value={votingData[proposal.id]?.kingdom || ''}
                         onChange={(e) => updateVotingData(proposal.id, 'kingdom', e.target.value)}
+                        className="bg-white/10 border-white/20 text-white placeholder-purple-300 backdrop-blur-sm focus:ring-2 focus:ring-purple-400 focus:border-transparent"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-bold text-purple-200 mb-3">
                         Impatto (1-10)
                       </label>
                       <Input
@@ -251,18 +367,19 @@ export default function Home() {
                         placeholder="1-10"
                         value={votingData[proposal.id]?.score || ''}
                         onChange={(e) => updateVotingData(proposal.id, 'score', e.target.value)}
+                        className="bg-white/10 border-white/20 text-white placeholder-purple-300 backdrop-blur-sm focus:ring-2 focus:ring-purple-400 focus:border-transparent"
                       />
-                      <div className="text-xs text-gray-500 mt-1">
-                        1 = Nessun impatto, 10 = Smetterei di spendere
+                      <div className="text-xs text-purple-300 mt-2">
+                        1 = Nessun impatto • 10 = Smetterei di investire
                       </div>
                     </div>
                     <div className="flex items-end">
                       <Button 
                         onClick={() => handleVote(proposal.id)}
-                        className="w-full"
+                        className={`w-full bg-gradient-to-r ${proposal.color} hover:scale-105 transition-all duration-300 shadow-lg font-bold text-white border-0`}
                         disabled={!votingData[proposal.id]?.kingdom || !votingData[proposal.id]?.score}
                       >
-                        Vota
+                        ✨ Vota Ora
                       </Button>
                     </div>
                   </div>
@@ -272,16 +389,30 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Info */}
-        <Card className="mt-8 bg-blue-50 border-blue-200">
-          <CardContent className="pt-6">
+        {/* Premium Footer */}
+        <Card className="mt-12 backdrop-blur-xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 border-white/20 shadow-2xl">
+          <CardContent className="pt-8">
             <div className="text-center">
-              <h3 className="font-semibold text-blue-900 mb-2">Come Funziona</h3>
-              <p className="text-blue-800 text-sm">
-                Ogni voto è completamente anonimo. I dati vengono salvati solo nel tuo browser. 
-                L&apos;indice generale mostra quanto la community è preoccupata per questi cambiamenti 
-                e il loro impatto sulla voglia di continuare a spendere nel gioco.
+              <div className="text-4xl mb-4">🚀</div>
+              <h3 className="font-bold text-white text-xl mb-4">Esperienza Premium</h3>
+              <p className="text-purple-200 max-w-2xl mx-auto leading-relaxed">
+                Ogni voto è completamente anonimo e sicuro. I dati vengono salvati localmente nel tuo browser. 
+                L&apos;indice generale riflette il sentiment della community sulla voglia di continuare a investire nel gioco.
               </p>
+              <div className="flex items-center justify-center space-x-8 mt-8 text-sm">
+                <div className="flex items-center text-green-300">
+                  <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+                  100% Anonimo
+                </div>
+                <div className="flex items-center text-blue-300">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></div>
+                  Dati Locali
+                </div>
+                <div className="flex items-center text-purple-300">
+                  <div className="w-2 h-2 bg-purple-400 rounded-full mr-2 animate-pulse"></div>
+                  Real-time
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>
