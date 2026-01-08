@@ -281,6 +281,10 @@ export async function getVerifiedRepresentatives() {
  */
 export async function checkAdminAccess(userId: string) {
   try {
+    if (!supabase) {
+      return { success: false, error: 'Supabase not configured' }
+    }
+
     const { data, error } = await supabase
       .from('profiles')
       .select('role, verified')
@@ -304,6 +308,10 @@ export async function checkAdminAccess(userId: string) {
  */
 export async function updateLastActive(userId: string) {
   try {
+    if (!supabase) {
+      return { success: false, error: 'Supabase not configured' }
+    }
+
     const { error } = await supabase
       .from('profiles')
       .update({ last_active: new Date().toISOString() })
@@ -348,6 +356,10 @@ export async function getServerActivitySummary() {
  */
 export async function flagInactiveRepresentatives(daysSinceLastActive: number = 30) {
   try {
+    if (!supabaseAdmin) {
+      return { success: false, error: 'Supabase admin not configured' }
+    }
+
     const cutoffDate = new Date()
     cutoffDate.setDate(cutoffDate.getDate() - daysSinceLastActive)
 
