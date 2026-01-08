@@ -13,6 +13,10 @@ import type {
 
 // Server operations
 export async function getServers() {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('servers')
     .select('*')
@@ -24,6 +28,10 @@ export async function getServers() {
 }
 
 export async function getServerById(id: string) {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('servers')
     .select('*')
@@ -36,6 +44,10 @@ export async function getServerById(id: string) {
 
 // Profile operations
 export async function getProfile(userId: string) {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('profiles')
     .select('*')
@@ -47,6 +59,10 @@ export async function getProfile(userId: string) {
 }
 
 export async function updateProfile(userId: string, updates: Partial<User>) {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('profiles')
     .update(updates)
@@ -59,6 +75,10 @@ export async function updateProfile(userId: string, updates: Partial<User>) {
 }
 
 export async function createProfile(profile: Omit<User, 'created_at' | 'last_active'>) {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('profiles')
     .insert(profile)
@@ -71,6 +91,10 @@ export async function createProfile(profile: Omit<User, 'created_at' | 'last_act
 
 // Proposal operations
 export async function getProposals(status?: Proposal['status']) {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   let query = supabase
     .from('proposals')
     .select(`
@@ -91,6 +115,10 @@ export async function getProposals(status?: Proposal['status']) {
 }
 
 export async function getProposalById(id: string) {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('proposals')
     .select(`
@@ -106,6 +134,10 @@ export async function getProposalById(id: string) {
 }
 
 export async function createProposal(proposal: Omit<Proposal, 'id' | 'created_at' | 'updated_at'>) {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('proposals')
     .insert(proposal)
@@ -117,6 +149,10 @@ export async function createProposal(proposal: Omit<Proposal, 'id' | 'created_at
 }
 
 export async function updateProposal(id: string, updates: Partial<Proposal>) {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('proposals')
     .update(updates)
@@ -130,6 +166,10 @@ export async function updateProposal(id: string, updates: Partial<Proposal>) {
 
 // Vote operations
 export async function castVote(vote: Omit<Vote, 'id' | 'created_at'>) {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('votes')
     .insert(vote)
@@ -141,6 +181,10 @@ export async function castVote(vote: Omit<Vote, 'id' | 'created_at'>) {
 }
 
 export async function getVotesByProposal(proposalId: string) {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('votes')
     .select(`
@@ -154,6 +198,10 @@ export async function getVotesByProposal(proposalId: string) {
 }
 
 export async function hasUserVoted(proposalId: string, userId: string) {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('votes')
     .select('id')
@@ -167,6 +215,10 @@ export async function hasUserVoted(proposalId: string, userId: string) {
 
 // Feedback operations
 export async function createFeedback(feedback: Omit<Feedback, 'id' | 'created_at' | 'updated_at'>) {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('feedback')
     .insert(feedback)
@@ -178,6 +230,10 @@ export async function createFeedback(feedback: Omit<Feedback, 'id' | 'created_at
 }
 
 export async function getFeedbackByServer(serverId: string) {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('feedback')
     .select(`
@@ -196,6 +252,10 @@ export async function getFeedbackByServer(serverId: string) {
 export async function createCSPIDeclaration(
   declaration: Omit<CSPIDeclaration, 'id' | 'created_at'>
 ) {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('cspi_declarations')
     .insert(declaration)
@@ -207,6 +267,10 @@ export async function createCSPIDeclaration(
 }
 
 export async function getLatestCSPIDeclarations() {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('cspi_declarations')
     .select(`
@@ -221,6 +285,10 @@ export async function getLatestCSPIDeclarations() {
 }
 
 export async function calculateCurrentCSPI() {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   // Get the latest declaration for each server
   const { data: declarations, error } = await supabase.rpc('get_latest_cspi_declarations')
 
@@ -247,6 +315,10 @@ export async function calculateCurrentCSPI() {
 }
 
 export async function createCSPISnapshot(snapshot: Omit<CSPISnapshot, 'id' | 'created_at'>) {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('cspi_snapshots')
     .insert(snapshot)
@@ -258,6 +330,10 @@ export async function createCSPISnapshot(snapshot: Omit<CSPISnapshot, 'id' | 'cr
 }
 
 export async function getCSPIHistory(limit = 30) {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('cspi_snapshots')
     .select('*')
@@ -270,6 +346,10 @@ export async function getCSPIHistory(limit = 30) {
 
 // Utility functions
 export async function getTotalActiveServers() {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { count, error } = await supabase
     .from('servers')
     .select('*', { count: 'exact', head: true })
@@ -280,6 +360,10 @@ export async function getTotalActiveServers() {
 }
 
 export async function getActiveRepresentatives() {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
   const { data, error } = await supabase
     .from('profiles')
     .select('*')
@@ -293,6 +377,10 @@ export async function getActiveRepresentatives() {
 
 // Admin functions (using service role)
 export async function verifyRepresentative(userId: string, serverId: string) {
+  if (!supabaseAdmin) {
+    throw new Error('Supabase admin not configured')
+  }
+
   const { data, error } = await supabaseAdmin
     .from('profiles')
     .update({ verified: true, server_id: serverId })
@@ -312,6 +400,10 @@ export async function verifyRepresentative(userId: string, serverId: string) {
 }
 
 export async function getUnverifiedRepresentatives() {
+  if (!supabaseAdmin) {
+    throw new Error('Supabase admin not configured')
+  }
+
   const { data, error } = await supabaseAdmin
     .from('profiles')
     .select('*')
