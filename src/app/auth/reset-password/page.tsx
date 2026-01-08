@@ -21,6 +21,11 @@ export default function ResetPasswordPage() {
   useEffect(() => {
     // Handle the auth callback
     const handleAuthCallback = async () => {
+      if (!supabase) {
+        setError('Supabase is not configured. Please contact support.')
+        return
+      }
+
       const { data, error } = await supabase.auth.getSession()
       
       if (error) {
@@ -55,6 +60,12 @@ export default function ResetPasswordPage() {
     }
 
     try {
+      if (!supabase) {
+        setError('Supabase is not configured. Please contact support.')
+        setLoading(false)
+        return
+      }
+
       const { error } = await supabase.auth.updateUser({
         password: password
       })

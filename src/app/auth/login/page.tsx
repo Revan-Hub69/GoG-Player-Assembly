@@ -24,6 +24,11 @@ export default function LoginPage() {
     setError(null)
 
     try {
+      if (!supabase) {
+        setError('Supabase is not configured. Please contact support.')
+        return
+      }
+
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,

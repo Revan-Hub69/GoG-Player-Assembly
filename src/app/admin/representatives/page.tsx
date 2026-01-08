@@ -76,7 +76,7 @@ export default function AdminRepresentativesPage() {
         // Refresh the lists
         await loadRepresentatives()
       } else {
-        setError(result.error)
+        setError(result.error || 'Verification failed')
       }
     } catch (err) {
       setError('Failed to verify representative')

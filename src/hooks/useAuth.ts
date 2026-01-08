@@ -26,6 +26,11 @@ export function useAuth() {
     // Get initial session
     const getInitialSession = async () => {
       try {
+        if (!supabase) {
+          setAuthState(prev => ({ ...prev, error: 'Supabase not configured', loading: false }))
+          return
+        }
+
         const { data: { session }, error } = await supabase.auth.getSession()
         
         if (error) {
@@ -50,6 +55,11 @@ export function useAuth() {
     getInitialSession()
 
     // Listen for auth changes
+    if (!supabase) {
+      setAuthState(prev => ({ ...prev, error: 'Supabase not configured', loading: false }))
+      return () => {}
+    }
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (event === 'SIGNED_IN' && session?.user) {
@@ -74,6 +84,10 @@ export function useAuth() {
 
   const loadUserProfile = async (user: SupabaseUser) => {
     try {
+      if (!supabase) {
+        throw new Error('Supabase not configured')
+      }
+
       const { data: profile, error } = await supabase
         .from('profiles')
         .select('*')
@@ -105,6 +119,10 @@ export function useAuth() {
   const signIn = async (email: string, password: string) => {
     setAuthState(prev => ({ ...prev, loading: true, error: null }))
     
+    if (!supabase) {
+      throw new Error('Supabase not configured')
+    }
+    
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
@@ -126,6 +144,10 @@ export function useAuth() {
 
   const signUp = async (email: string, password: string, userData: any) => {
     setAuthState(prev => ({ ...prev, loading: true, error: null }))
+    
+    if (!supabase) {
+      throw new Error('Supabase not configured')
+    }
     
     try {
       const { data, error } = await supabase.auth.signUp({
@@ -152,6 +174,10 @@ export function useAuth() {
   const signOut = async () => {
     setAuthState(prev => ({ ...prev, loading: true }))
     
+    if (!supabase) {
+      throw new Error('Supabase not configured')
+    }
+    
     try {
       const { error } = await supabase.auth.signOut()
       
@@ -171,6 +197,10 @@ export function useAuth() {
 
   const updateProfile = async (updates: Partial<User>) => {
     if (!authState.user) return { success: false, error: 'Not authenticated' }
+
+    if (!supabase) {
+      return { success: false, error: 'Supabase not configured' }
+    }
 
     try {
       const { data, error } = await supabase

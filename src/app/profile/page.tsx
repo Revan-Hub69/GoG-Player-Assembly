@@ -56,7 +56,7 @@ export default function ProfilePage() {
           email: result.profile.email || '',
         })
       } else {
-        setError(result.error)
+        setError(result.error || 'Failed to load profile')
       }
     } catch (err) {
       setError('Failed to load profile data')
@@ -82,7 +82,7 @@ export default function ProfilePage() {
         await loadProfileData()
         setEditing(false)
       } else {
-        setError(result.error)
+        setError(result.error || 'Failed to update profile')
       }
     } catch (err) {
       setError('Failed to update profile')

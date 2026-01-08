@@ -20,6 +20,10 @@ export interface ProfileUpdateData {
  */
 export async function registerRepresentative(data: RegistrationData) {
   try {
+    if (!supabase) {
+      return { success: false, error: 'Supabase not configured' }
+    }
+
     // First, check if server is available
     const { data: server, error: serverError } = await supabase
       .from('servers')
@@ -96,6 +100,10 @@ export async function registerRepresentative(data: RegistrationData) {
  */
 export async function verifyRepresentative(userId: string, serverId: string) {
   try {
+    if (!supabaseAdmin) {
+      return { success: false, error: 'Supabase admin not configured' }
+    }
+
     // This should be called with admin privileges
     const { data: profile, error: profileError } = await supabaseAdmin
       .from('profiles')
@@ -302,6 +310,10 @@ export async function updateLastActive(userId: string) {
  */
 export async function getServerActivitySummary() {
   try {
+    if (!supabase) {
+      return { success: false, error: 'Supabase not configured' }
+    }
+
     const { data, error } = await supabase.rpc('get_server_activity_summary')
 
     if (error) {

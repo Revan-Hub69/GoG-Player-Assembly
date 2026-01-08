@@ -19,6 +19,11 @@ export default function VerificationPendingPage() {
 
   const checkVerificationStatus = async () => {
     try {
+      if (!supabase) {
+        console.error('Supabase is not configured')
+        return
+      }
+
       const { data: { user } } = await supabase.auth.getUser()
       
       if (!user) {
@@ -51,7 +56,9 @@ export default function VerificationPendingPage() {
   }
 
   const handleLogout = async () => {
-    await supabase.auth.signOut()
+    if (supabase) {
+      await supabase.auth.signOut()
+    }
     router.push('/')
   }
 

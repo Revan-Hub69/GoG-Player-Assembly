@@ -29,6 +29,11 @@ export default function RegisterPage() {
 
   const loadServers = async () => {
     try {
+      if (!supabase) {
+        console.error('Supabase is not configured')
+        return
+      }
+
       const { data, error } = await supabase
         .from('servers')
         .select('*')
@@ -75,6 +80,11 @@ export default function RegisterPage() {
     }
 
     try {
+      if (!supabase) {
+        setError('Supabase is not configured. Please contact support.')
+        return
+      }
+
       // Create auth user
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: formData.email,
