@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Users, FileText, Vote, MessageSquare, TrendingUp, Settings } from 'lucide-react'
 import Link from 'next/link'
 
 export default function DashboardPage() {
@@ -79,7 +78,7 @@ export default function DashboardPage() {
               {isAdmin && (
                 <Link href="/admin">
                   <Button variant="outline" size="sm">
-                    <Settings className="h-4 w-4 mr-2" />
+                    <img src="/icons/settings.svg" alt="Settings" className="h-4 w-4 mr-2" />
                     Admin
                   </Button>
                 </Link>
@@ -99,7 +98,7 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Proposte Totali</CardTitle>
-              <FileText className="h-4 w-4 text-muted-foreground" />
+              <img src="/icons/file-text.svg" alt="File Text" className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.totalProposals}</div>
@@ -112,7 +111,7 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Voti Attivi</CardTitle>
-              <Vote className="h-4 w-4 text-muted-foreground" />
+              <img src="/icons/vote.svg" alt="Vote" className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.activeVotes}</div>
@@ -125,7 +124,7 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Feedback Pendenti</CardTitle>
-              <MessageSquare className="h-4 w-4 text-muted-foreground" />
+              <img src="/icons/message.svg" alt="Message" className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.pendingFeedback}</div>
@@ -138,7 +137,7 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">CSPI Corrente</CardTitle>
-              <TrendingUp className="h-4 w-4 text-muted-foreground" />
+              <img src="/icons/trending.svg" alt="Trending" className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{(stats.currentCSPI * 100).toFixed(1)}%</div>
@@ -154,7 +153,7 @@ export default function DashboardPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
-                <FileText className="h-5 w-5 mr-2" />
+                <img src="/icons/file-text.svg" alt="File Text" className="h-5 w-5 mr-2" />
                 Proposte
               </CardTitle>
               <CardDescription>
@@ -180,7 +179,7 @@ export default function DashboardPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
-                <Vote className="h-5 w-5 mr-2" />
+                <img src="/icons/vote.svg" alt="Vote" className="h-5 w-5 mr-2" />
                 Votazioni
               </CardTitle>
               <CardDescription>
@@ -199,7 +198,7 @@ export default function DashboardPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
-                <MessageSquare className="h-5 w-5 mr-2" />
+                <img src="/icons/message.svg" alt="Message" className="h-5 w-5 mr-2" />
                 Feedback
               </CardTitle>
               <CardDescription>
@@ -225,7 +224,7 @@ export default function DashboardPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
-                <TrendingUp className="h-5 w-5 mr-2" />
+                <img src="/icons/trending.svg" alt="Trending" className="h-5 w-5 mr-2" />
                 CSPI
               </CardTitle>
               <CardDescription>
@@ -251,7 +250,7 @@ export default function DashboardPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
-                <Users className="h-5 w-5 mr-2" />
+                <img src="/icons/users.svg" alt="Users" className="h-5 w-5 mr-2" />
                 Comunicazione
               </CardTitle>
               <CardDescription>
@@ -271,7 +270,7 @@ export default function DashboardPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center">
-                  <Settings className="h-5 w-5 mr-2" />
+                  <img src="/icons/settings.svg" alt="Settings" className="h-5 w-5 mr-2" />
                   Amministrazione
                 </CardTitle>
                 <CardDescription>

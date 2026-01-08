@@ -7,8 +7,6 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { Plus, Edit, Trash2, UserPlus, UserMinus } from 'lucide-react'
-
 interface Server {
   id: string
   name: string
@@ -202,7 +200,7 @@ export default function ServersAdminPage() {
           </p>
         </div>
         <Button onClick={() => setShowCreateForm(true)}>
-          <Plus className="w-4 h-4 mr-2" />
+          <img src="/icons/plus.svg" alt="Plus" className="w-4 h-4 mr-2" />
           Add Server
         </Button>
       </div>
@@ -280,14 +278,14 @@ export default function ServersAdminPage() {
                 </div>
                 <div className="flex gap-2">
                   <Button variant="outline" size="sm">
-                    <Edit className="w-4 h-4" />
+                    <img src="/icons/edit.svg" alt="Edit" className="w-4 h-4" />
                   </Button>
                   <Button 
                     variant="outline" 
                     size="sm"
                     onClick={() => handleDeactivateServer(server.id)}
                   >
-                    <Trash2 className="w-4 h-4" />
+                    <img src="/icons/trash.svg" alt="Delete" className="w-4 h-4" />
                   </Button>
                 </div>
               </div>
@@ -310,7 +308,7 @@ export default function ServersAdminPage() {
                         size="sm"
                         onClick={() => handleRemoveRepresentative(server.id)}
                       >
-                        <UserMinus className="w-4 h-4 mr-2" />
+                        <img src="/icons/user-minus.svg" alt="Remove User" className="w-4 h-4 mr-2" />
                         Remove
                       </Button>
                     </div>
@@ -331,7 +329,7 @@ export default function ServersAdminPage() {
                                 onClick={() => handleAssignRepresentative(server.id, rep.id)}
                                 disabled={!rep.verified}
                               >
-                                <UserPlus className="w-4 h-4 mr-2" />
+                                <img src="/icons/user-plus.svg" alt="Add User" className="w-4 h-4 mr-2" />
                                 Assign
                               </Button>
                             </div>

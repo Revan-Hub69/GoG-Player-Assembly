@@ -5,7 +5,6 @@ import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Mail, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 
 export default function ForgotPasswordPage() {
@@ -48,7 +47,7 @@ export default function ForgotPasswordPage() {
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
             <div className="mx-auto mb-4">
-              <Mail className="h-16 w-16 text-green-500" />
+              <img src="/icons/mail.svg" alt="Mail" className="h-16 w-16 text-green-500" />
             </div>
             <CardTitle className="text-2xl font-bold">Email Inviata!</CardTitle>
             <CardDescription>
@@ -72,7 +71,7 @@ export default function ForgotPasswordPage() {
             <div className="pt-4">
               <Link href="/auth/login">
                 <Button variant="outline" className="w-full">
-                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  <img src="/icons/arrow-left.svg" alt="Back" className="h-4 w-4 mr-2" />
                   Torna al Login
                 </Button>
               </Link>
@@ -126,7 +125,7 @@ export default function ForgotPasswordPage() {
 
           <div className="mt-6 text-center">
             <Link href="/auth/login" className="text-sm text-blue-600 hover:underline">
-              <ArrowLeft className="h-4 w-4 inline mr-1" />
+              <img src="/icons/arrow-left.svg" alt="Back" className="h-4 w-4 inline mr-1" />
               Torna al Login
             </Link>
           </div>

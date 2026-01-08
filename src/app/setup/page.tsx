@@ -4,7 +4,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useState } from 'react'
-import { ExternalLink, Database, Key, Server } from 'lucide-react'
 
 export default function SetupPage() {
   const [step, setStep] = useState(1)
@@ -53,7 +52,7 @@ export default function SetupPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center">
-                  <Database className="w-5 h-5 mr-2" />
+                  <img src="/icons/database.svg" alt="Database" className="w-5 h-5 mr-2" />
                   Step 1: Create Supabase Project
                 </CardTitle>
               </CardHeader>
@@ -62,7 +61,7 @@ export default function SetupPage() {
                   First, you need to create a new Supabase project:
                 </p>
                 <ol className="list-decimal list-inside space-y-2 text-sm">
-                  <li>Go to <a href="https://supabase.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline inline-flex items-center">supabase.com <ExternalLink className="w-3 h-3 ml-1" /></a></li>
+                  <li>Go to <a href="https://supabase.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline inline-flex items-center">supabase.com <img src="/icons/external-link.svg" alt="External Link" className="w-3 h-3 ml-1" /></a></li>
                   <li>Sign up or log in to your account</li>
                   <li>Click "New Project"</li>
                   <li>Choose your organization</li>
@@ -77,7 +76,7 @@ export default function SetupPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center">
-                  <Key className="w-5 h-5 mr-2" />
+                  <img src="/icons/key.svg" alt="Key" className="w-5 h-5 mr-2" />
                   Step 2: Get API Keys
                 </CardTitle>
               </CardHeader>
@@ -97,7 +96,7 @@ export default function SetupPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center">
-                  <Server className="w-5 h-5 mr-2" />
+                  <img src="/icons/server.svg" alt="Server" className="w-5 h-5 mr-2" />
                   Step 3: Run Database Migrations
                 </CardTitle>
               </CardHeader>

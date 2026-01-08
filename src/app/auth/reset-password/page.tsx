@@ -6,8 +6,6 @@ import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { CheckCircle } from 'lucide-react'
-
 function ResetPasswordForm() {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -93,7 +91,7 @@ function ResetPasswordForm() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="mx-auto mb-4">
-            <CheckCircle className="h-16 w-16 text-green-500" />
+            <img src="/icons/check-circle.svg" alt="Success" className="h-16 w-16 text-green-500" />
           </div>
           <CardTitle className="text-2xl font-bold">Password Aggiornata!</CardTitle>
           <CardDescription>

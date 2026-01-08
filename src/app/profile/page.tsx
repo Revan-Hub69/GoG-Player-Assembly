@@ -6,7 +6,6 @@ import { updateProfile, getProfileWithServer } from '@/lib/auth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { User, Server, Mail, Shield, Calendar, MapPin } from 'lucide-react'
 import Link from 'next/link'
 
 interface ProfileWithServer {
@@ -160,7 +159,7 @@ export default function ProfilePage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center">
-                  <User className="h-5 w-5 mr-2" />
+                  <img src="/icons/user.svg" alt="User" className="h-5 w-5 mr-2" />
                   Informazioni Personali
                 </CardTitle>
                 <CardDescription>
@@ -241,7 +240,7 @@ export default function ProfilePage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center">
-                  <Shield className="h-5 w-5 mr-2" />
+                  <img src="/icons/shield.svg" alt="Shield" className="h-5 w-5 mr-2" />
                   Stato Account
                 </CardTitle>
               </CardHeader>
@@ -283,7 +282,7 @@ export default function ProfilePage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center">
-                    <MapPin className="h-5 w-5 mr-2" />
+                    <img src="/icons/map-pin.svg" alt="Location" className="h-5 w-5 mr-2" />
                     Server Assegnato
                   </CardTitle>
                 </CardHeader>

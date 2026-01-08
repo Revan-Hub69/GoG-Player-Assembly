@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { CheckCircle, Clock, AlertCircle } from 'lucide-react'
 import type { User } from '@/types'
 
 export default function VerificationPendingPage() {
@@ -84,9 +83,9 @@ export default function VerificationPendingPage() {
         <CardHeader className="text-center">
           <div className="mx-auto mb-4">
             {profile?.verified ? (
-              <CheckCircle className="h-16 w-16 text-green-500" />
+              <img src="/icons/check-circle.svg" alt="Verified" className="h-16 w-16 text-green-500" />
             ) : (
-              <Clock className="h-16 w-16 text-yellow-500" />
+              <img src="/icons/clock.svg" alt="Pending" className="h-16 w-16 text-yellow-500" />
             )}
           </div>
           <CardTitle className="text-2xl font-bold">
@@ -104,7 +103,7 @@ export default function VerificationPendingPage() {
             <>
               <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-md">
                 <div className="flex items-start">
-                  <AlertCircle className="h-5 w-5 text-yellow-600 mt-0.5 mr-3 flex-shrink-0" />
+                  <img src="/icons/alert-triangle.svg" alt="Alert" className="h-5 w-5 text-yellow-600 mt-0.5 mr-3 flex-shrink-0" />
                   <div className="text-sm text-yellow-800">
                     <p className="font-medium mb-1">Account in attesa di verifica</p>
                     <p>
