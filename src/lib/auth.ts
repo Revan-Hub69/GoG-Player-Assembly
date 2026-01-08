@@ -147,6 +147,10 @@ export async function verifyRepresentative(userId: string, serverId: string) {
  */
 export async function updateProfile(userId: string, updates: ProfileUpdateData) {
   try {
+    if (!supabase) {
+      return { success: false, error: 'Supabase not configured' }
+    }
+
     const { data: profile, error } = await supabase
       .from('profiles')
       .update({
@@ -173,6 +177,10 @@ export async function updateProfile(userId: string, updates: ProfileUpdateData) 
  */
 export async function getProfileWithServer(userId: string) {
   try {
+    if (!supabase) {
+      return { success: false, error: 'Supabase not configured' }
+    }
+
     const { data, error } = await supabase
       .from('profiles')
       .select(`
@@ -203,6 +211,10 @@ export async function getProfileWithServer(userId: string) {
  */
 export async function getUnverifiedRepresentatives() {
   try {
+    if (!supabaseAdmin) {
+      return { success: false, error: 'Supabase admin not configured' }
+    }
+
     const { data, error } = await supabaseAdmin
       .from('profiles')
       .select(`
@@ -234,6 +246,10 @@ export async function getUnverifiedRepresentatives() {
  */
 export async function getVerifiedRepresentatives() {
   try {
+    if (!supabase) {
+      return { success: false, error: 'Supabase not configured' }
+    }
+
     const { data, error } = await supabase
       .from('profiles')
       .select(`
