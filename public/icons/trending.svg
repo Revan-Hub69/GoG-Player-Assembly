@@ -1,0 +1,16 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="trendingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Trending line -->
+  <path d="M3 17 L7 13 L11 15 L17 9 L21 5" stroke="url(#trendingGradient)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Arrow -->
+  <path d="M17 5 L21 5 L21 9" stroke="url(#trendingGradient)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Data points -->
+  <circle cx="7" cy="13" r="2" fill="url(#trendingGradient)"/>
+  <circle cx="11" cy="15" r="2" fill="url(#trendingGradient)"/>
+  <circle cx="17" cy="9" r="2" fill="url(#trendingGradient)"/>
+</svg>

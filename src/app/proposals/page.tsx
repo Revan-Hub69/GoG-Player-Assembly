@@ -4,19 +4,6 @@ import { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { 
-  Vote, 
-  MessageSquare, 
-  TrendingUp, 
-  Users, 
-  Shield,
-  Sword,
-  Coins,
-  AlertTriangle,
-  CheckCircle,
-  Clock,
-  ArrowLeft
-} from 'lucide-react'
 import Link from 'next/link'
 
 interface Proposal {
@@ -76,10 +63,10 @@ const proposals: Proposal[] = [
 ]
 
 const categoryIcons = {
-  gameplay: Sword,
-  balance: Shield,
-  economy: Coins,
-  social: Users
+  gameplay: '/icons/sword.svg',
+  balance: '/icons/shield.svg',
+  economy: '/icons/coins.svg',
+  social: '/icons/users.svg'
 }
 
 const categoryColors = {
@@ -116,7 +103,7 @@ export default function ProposalsPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <Link href="/" className="flex items-center space-x-2">
-              <ArrowLeft className="w-5 h-5 text-gray-600" />
+              <img src="/icons/arrow-left.svg" alt="Back" className="w-5 h-5 text-gray-600" />
               <span className="text-gray-600 hover:text-gray-900">Back to Home</span>
             </Link>
             <div className="flex items-center space-x-2">
@@ -140,7 +127,7 @@ export default function ProposalsPage() {
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center">
-                  <Vote className="w-8 h-8 text-blue-600 mr-3" />
+                  <img src="/icons/vote.svg" alt="Vote" className="w-8 h-8 text-blue-600 mr-3" />
                   <div>
                     <div className="text-2xl font-bold text-gray-900">{totalVotes}</div>
                     <div className="text-sm text-gray-600">Total Votes</div>
@@ -152,7 +139,7 @@ export default function ProposalsPage() {
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center">
-                  <MessageSquare className="w-8 h-8 text-green-600 mr-3" />
+                  <img src="/icons/message.svg" alt="Message" className="w-8 h-8 text-green-600 mr-3" />
                   <div>
                     <div className="text-2xl font-bold text-gray-900">{proposals.length}</div>
                     <div className="text-sm text-gray-600">Active Proposals</div>
@@ -164,7 +151,7 @@ export default function ProposalsPage() {
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center">
-                  <TrendingUp className="w-8 h-8 text-purple-600 mr-3" />
+                  <img src="/icons/trending.svg" alt="Trending" className="w-8 h-8 text-purple-600 mr-3" />
                   <div>
                     <div className="text-2xl font-bold text-gray-900">{averageCSPI.toFixed(2)}</div>
                     <div className="text-sm text-gray-600">Average CSPI Impact</div>
@@ -176,7 +163,7 @@ export default function ProposalsPage() {
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center">
-                  <Users className="w-8 h-8 text-orange-600 mr-3" />
+                  <img src="/icons/users.svg" alt="Users" className="w-8 h-8 text-orange-600 mr-3" />
                   <div>
                     <div className="text-2xl font-bold text-gray-900">89%</div>
                     <div className="text-sm text-gray-600">Participation Rate</div>
@@ -223,7 +210,7 @@ export default function ProposalsPage() {
         {/* Proposals List */}
         <div className="space-y-6">
           {filteredProposals.map((proposal) => {
-            const CategoryIcon = categoryIcons[proposal.category]
+            const categoryIcon = categoryIcons[proposal.category]
             const totalVotes = proposal.votes.yes + proposal.votes.no + proposal.votes.abstain
             const yesPercentage = totalVotes > 0 ? (proposal.votes.yes / totalVotes) * 100 : 0
             const noPercentage = totalVotes > 0 ? (proposal.votes.no / totalVotes) * 100 : 0
@@ -234,7 +221,7 @@ export default function ProposalsPage() {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center space-x-3 mb-2">
-                        <CategoryIcon className="w-5 h-5 text-gray-600" />
+                        <img src={categoryIcon} alt="Category" className="w-5 h-5 text-gray-600" />
                         <Badge className={categoryColors[proposal.category]}>
                           {proposal.category.charAt(0).toUpperCase() + proposal.category.slice(1)}
                         </Badge>
@@ -286,7 +273,7 @@ export default function ProposalsPage() {
                   {/* Supporting Servers */}
                   <div className="mb-6">
                     <div className="flex items-center mb-2">
-                      <Users className="w-4 h-4 text-gray-600 mr-2" />
+                      <img src="/icons/users.svg" alt="Users" className="w-4 h-4 text-gray-600 mr-2" />
                       <span className="text-sm font-medium text-gray-700">Supporting Servers ({proposal.supportingServers.length})</span>
                     </div>
                     <div className="flex flex-wrap gap-1">
@@ -302,15 +289,15 @@ export default function ProposalsPage() {
                   <div className="mb-6">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <TrendingUp className="w-4 h-4 text-gray-600 mr-2" />
+                        <img src="/icons/trending.svg" alt="Trending" className="w-4 h-4 text-gray-600 mr-2" />
                         <span className="text-sm font-medium text-gray-700">CSPI Impact</span>
                       </div>
                       <div className="flex items-center">
                         <div className="text-lg font-bold text-orange-600">{proposal.cspiImpact.toFixed(2)}</div>
                         {proposal.cspiImpact > 0.4 ? (
-                          <AlertTriangle className="w-4 h-4 text-red-500 ml-2" />
+                          <img src="/icons/alert-triangle.svg" alt="High Impact" className="w-4 h-4 text-red-500 ml-2" />
                         ) : (
-                          <CheckCircle className="w-4 h-4 text-green-500 ml-2" />
+                          <img src="/icons/check-circle.svg" alt="Moderate Impact" className="w-4 h-4 text-green-500 ml-2" />
                         )}
                       </div>
                     </div>
@@ -322,11 +309,11 @@ export default function ProposalsPage() {
                   {/* Voting Period */}
                   <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
                     <div className="flex items-center">
-                      <Clock className="w-4 h-4 mr-1" />
+                      <img src="/icons/clock.svg" alt="Clock" className="w-4 h-4 mr-1" />
                       Created: {new Date(proposal.createdAt).toLocaleDateString()}
                     </div>
                     <div className="flex items-center">
-                      <Clock className="w-4 h-4 mr-1" />
+                      <img src="/icons/clock.svg" alt="Clock" className="w-4 h-4 mr-1" />
                       Voting ends: {new Date(proposal.votingEnds).toLocaleDateString()}
                     </div>
                   </div>
@@ -334,11 +321,11 @@ export default function ProposalsPage() {
                   {/* Action Buttons */}
                   <div className="flex space-x-3">
                     <Button className="flex-1">
-                      <Vote className="w-4 h-4 mr-2" />
+                      <img src="/icons/vote.svg" alt="Vote" className="w-4 h-4 mr-2" />
                       Vote Now
                     </Button>
                     <Button variant="outline">
-                      <MessageSquare className="w-4 h-4 mr-2" />
+                      <img src="/icons/message.svg" alt="Message" className="w-4 h-4 mr-2" />
                       Discuss
                     </Button>
                   </div>
@@ -352,7 +339,7 @@ export default function ProposalsPage() {
         <Card className="mt-8">
           <CardHeader>
             <CardTitle className="flex items-center">
-              <TrendingUp className="w-6 h-6 mr-2 text-orange-600" />
+              <img src="/icons/trending.svg" alt="CSPI" className="w-6 h-6 mr-2 text-orange-600" />
               Community Spending Propensity Index (CSPI)
             </CardTitle>
             <CardDescription>
