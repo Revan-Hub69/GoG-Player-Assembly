@@ -32,16 +32,22 @@ export function Header({ className, language, translations, onLanguageChange }: 
               {translations.header.process}
             </a>
             <a 
+              href="#ai-process" 
+              className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+            >
+              {translations.header.aiProcess}
+            </a>
+            <a 
+              href="#kingdoms" 
+              className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+            >
+              {translations.header.kingdoms}
+            </a>
+            <a 
               href="#requests" 
               className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
             >
               {translations.header.requests}
-            </a>
-            <a 
-              href="#representatives" 
-              className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
-            >
-              {translations.header.representatives}
             </a>
             <LanguageToggle 
               currentLanguage={language}

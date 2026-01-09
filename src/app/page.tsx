@@ -5,7 +5,10 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Header } from '@/components/layout/Header'
 import { RequestCard } from '@/components/requests/RequestCard'
+import { KingdomsTable } from '@/components/kingdoms/KingdomsTable'
+import { AIProcessFlow } from '@/components/ai/AIProcessFlow'
 import { getTranslations, type Language } from '@/lib/translations'
+import type { KingdomStats } from '@/types'
 
 interface CommunityRequest {
   id: string
@@ -28,24 +31,24 @@ const communityRequests: CommunityRequest[] = [
       en: 'Guard Skill Activation System Standardization'
     },
     description: {
-      it: 'L\'attuale sistema RNG per l\'attivazione delle skill crea risultati di battaglia imprevedibili che minano il gameplay strategico. Richiesta di standardizzazione dei tassi di attivazione o implementazione di sistema a rotazione.',
-      en: 'Current RNG-based skill activation creates unpredictable battle outcomes that undermine strategic gameplay. Request standardization of activation rates or implementation of skill rotation system.'
+      it: 'Richiesta aggregata da 23 proposte della community per standardizzare il sistema RNG delle skill delle guardie. L\'AI ha identificato pattern comuni nelle lamentele riguardo l\'imprevedibilità dei risultati di battaglia.',
+      en: 'Aggregated request from 23 community proposals to standardize the guard skill RNG system. AI identified common patterns in complaints about unpredictable battle outcomes.'
     },
     category: 'gameplay',
     priority: 'critical',
     status: 'review',
     submittedBy: {
-      it: 'Coalizione Rappresentanti dei Regni',
-      en: 'Kingdom Representatives Coalition'
+      it: 'Sistema AI Assembly (23 proposte aggregate)',
+      en: 'AI Assembly System (23 aggregated proposals)'
     },
     submittedDate: '15/01/2024',
     technicalDetails: {
-      it: 'Implementare attivazione skill deterministica basata su ordine di turno o sistema di cooldown invece di puro RNG',
-      en: 'Implement deterministic skill activation based on turn order or cooldown system rather than pure RNG'
+      it: 'Implementare attivazione skill deterministica basata su ordine di turno o sistema di cooldown. Analisi AI suggerisce sistema ibrido con 70% determinismo e 30% casualità controllata.',
+      en: 'Implement deterministic skill activation based on turn order or cooldown system. AI analysis suggests hybrid system with 70% determinism and 30% controlled randomness.'
     },
     expectedOutcome: {
-      it: 'Risultati di battaglia consistenti che premiano la pianificazione strategica invece del caso',
-      en: 'Consistent battle outcomes that reward strategic planning over random chance'
+      it: 'Risultati di battaglia più consistenti che premiano la pianificazione strategica. Riduzione del 60% delle lamentele relative all\'RNG secondo l\'analisi predittiva AI.',
+      en: 'More consistent battle outcomes rewarding strategic planning. 60% reduction in RNG-related complaints according to AI predictive analysis.'
     }
   },
   {
@@ -55,24 +58,24 @@ const communityRequests: CommunityRequest[] = [
       en: 'Kingdom Disruption Mitigation System'
     },
     description: {
-      it: 'Implementazione di misure di responsabilizzazione per giocatori che sistematicamente disturbano l\'armonia del regno causando abbandoni.',
-      en: 'Implementation of accountability measures for players who systematically disrupt kingdom harmony and cause player attrition.'
+      it: 'Aggregazione AI di 18 proposte riguardanti la gestione di giocatori disturbanti. L\'analisi ha identificato pattern comportamentali comuni e soluzioni convergenti.',
+      en: 'AI aggregation of 18 proposals regarding disruptive player management. Analysis identified common behavioral patterns and convergent solutions.'
     },
     category: 'social',
     priority: 'high',
     status: 'draft',
     submittedBy: {
-      it: 'Alleanza Multi-Regno',
-      en: 'Multi-Kingdom Alliance'
+      it: 'Sistema AI Assembly (18 proposte aggregate)',
+      en: 'AI Assembly System (18 aggregated proposals)'
     },
     submittedDate: '12/01/2024',
     technicalDetails: {
-      it: 'Introdurre sistema di reputazione con restrizioni temporanee per comportamenti disturbanti verificati',
-      en: 'Introduce reputation system with temporary restrictions for verified disruptive behavior'
+      it: 'Sistema di reputazione multi-livello con restrizioni temporanee graduate. L\'AI raccomanda implementazione graduale con periodo di test di 30 giorni.',
+      en: 'Multi-level reputation system with graduated temporary restrictions. AI recommends gradual implementation with 30-day testing period.'
     },
     expectedOutcome: {
-      it: 'Riduzione del turnover dei regni e miglioramento della retention dei giocatori',
-      en: 'Reduced kingdom turnover and improved player retention'
+      it: 'Riduzione del 45% del turnover dei regni e miglioramento del 35% della retention secondo modelli predittivi AI.',
+      en: '45% reduction in kingdom turnover and 35% improvement in retention according to AI predictive models.'
     }
   },
   {
@@ -82,25 +85,107 @@ const communityRequests: CommunityRequest[] = [
       en: 'Resource Economy Rebalancing'
     },
     description: {
-      it: 'Gli attuali costi delle risorse per le funzionalità avanzate creano barriere di accessibilità. Richiesta di struttura di costi graduata che mantenga la progressione migliorando l\'accessibilità.',
-      en: 'Current resource costs for advanced features create accessibility barriers. Request for graduated cost structure that maintains progression while improving accessibility.'
+      it: 'Sintesi AI di 31 proposte economiche che identificano barriere di accessibilità. L\'analisi ha rivelato pattern comuni nei costi delle risorse e suggerimenti di miglioramento.',
+      en: 'AI synthesis of 31 economic proposals identifying accessibility barriers. Analysis revealed common patterns in resource costs and improvement suggestions.'
     },
     category: 'economy',
     priority: 'high',
-    status: 'draft',
+    status: 'submitted',
     submittedBy: {
-      it: 'Comitato Consultivo Economico',
-      en: 'Economic Advisory Committee'
+      it: 'Sistema AI Assembly (31 proposte aggregate)',
+      en: 'AI Assembly System (31 aggregated proposals)'
     },
     submittedDate: '10/01/2024',
     technicalDetails: {
-      it: 'Implementare modello di pricing a livelli con percorsi di risorse alternative per l\'attivazione delle skill',
-      en: 'Implement tiered pricing model with alternative resource paths for skill activation'
+      it: 'Modello di pricing dinamico a livelli con percorsi alternativi. L\'AI suggerisce implementazione A/B testing per validare l\'impatto sui ricavi.',
+      en: 'Dynamic tiered pricing model with alternative pathways. AI suggests A/B testing implementation to validate revenue impact.'
     },
     expectedOutcome: {
-      it: 'Migliorata accessibilità delle funzionalità senza compromettere l\'equilibrio del gioco',
-      en: 'Improved feature accessibility without compromising game balance'
+      it: 'Miglioramento del 40% nell\'accessibilità delle funzionalità mantenendo l\'equilibrio economico secondo simulazioni AI.',
+      en: '40% improvement in feature accessibility while maintaining economic balance according to AI simulations.'
     }
+  }
+]
+
+// Mock data for kingdoms
+const mockKingdoms: KingdomStats[] = [
+  {
+    server_id: '1',
+    kingdom_name: 'Regno del Nord',
+    region: 'Europa',
+    representative_name: 'Marco Rossi',
+    representative_email: 'marco.rossi@email.com',
+    participation_status: 'active',
+    joined_at: '2024-01-01T00:00:00Z',
+    last_activity_at: '2024-01-20T10:30:00Z',
+    proposals_submitted: 8,
+    engagement_score: 0.85,
+    activity_status: 'active'
+  },
+  {
+    server_id: '2',
+    kingdom_name: 'Impero del Sud',
+    region: 'Europa',
+    representative_name: 'Sofia Bianchi',
+    representative_email: 'sofia.bianchi@email.com',
+    participation_status: 'active',
+    joined_at: '2024-01-03T00:00:00Z',
+    last_activity_at: '2024-01-19T15:45:00Z',
+    proposals_submitted: 12,
+    engagement_score: 0.92,
+    activity_status: 'active'
+  },
+  {
+    server_id: '3',
+    kingdom_name: 'Alleanza Orientale',
+    region: 'Asia',
+    representative_name: 'Chen Wei',
+    representative_email: 'chen.wei@email.com',
+    participation_status: 'active',
+    joined_at: '2024-01-05T00:00:00Z',
+    last_activity_at: '2024-01-18T09:20:00Z',
+    proposals_submitted: 6,
+    engagement_score: 0.73,
+    activity_status: 'recent'
+  },
+  {
+    server_id: '4',
+    kingdom_name: 'Federazione Occidentale',
+    region: 'America',
+    representative_name: 'John Smith',
+    representative_email: 'john.smith@email.com',
+    participation_status: 'active',
+    joined_at: '2024-01-02T00:00:00Z',
+    last_activity_at: '2024-01-21T14:10:00Z',
+    proposals_submitted: 15,
+    engagement_score: 0.88,
+    activity_status: 'active'
+  },
+  {
+    server_id: '5',
+    kingdom_name: 'Coalizione Artica',
+    region: 'Europa',
+    representative_name: 'Anna Kowalski',
+    representative_email: 'anna.kowalski@email.com',
+    participation_status: 'pending',
+    joined_at: '2024-01-15T00:00:00Z',
+    last_activity_at: '2024-01-16T11:30:00Z',
+    proposals_submitted: 2,
+    engagement_score: 0.45,
+    activity_status: 'recent'
+  },
+  {
+    server_id: '6',
+    kingdom_name: 'Unione del Pacifico',
+    region: 'Oceania',
+    representative_name: undefined,
+    representative_email: undefined,
+    participation_status: 'inactive',
+    joined_at: '2024-01-08T00:00:00Z',
+    last_activity_at: '2024-01-10T16:20:00Z',
+    proposals_submitted: 1,
+    engagement_score: 0.25,
+    activity_status: 'inactive'
   }
 ]
 
@@ -145,37 +230,57 @@ export default function Home() {
       />
 
       {/* Hero Section */}
-      <section className="bg-white py-16 relative overflow-hidden">
-        {/* Subtle background pattern */}
+      <section className="bg-white py-20 relative overflow-hidden">
+        {/* Enhanced background with particles */}
+        <div className="absolute inset-0 particles-bg opacity-30"></div>
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23374151' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Floating elements */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-20 animate-float"></div>
+        <div className="absolute top-40 right-20 w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full opacity-20 animate-float animation-delay-200"></div>
+        <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full opacity-20 animate-float animation-delay-400"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <div className="animate-fade-in-up">
-              <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl lg:text-6xl">
-                {t.hero.title}
+              <h1 className="text-5xl font-bold text-gray-900 sm:text-6xl lg:text-7xl mb-6">
+                <span className="gradient-text">{t.hero.title}</span>
               </h1>
-              <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="mt-6 text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
                 {t.hero.subtitle}
               </p>
             </div>
-            <div className="mt-10 flex items-center justify-center space-x-12 text-sm text-gray-500 animate-fade-in-up animation-delay-200">
-              <div className="flex items-center space-x-2 hover:text-blue-600 transition-colors">
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                <span>{t.hero.democraticProcess}</span>
+            <div className="mt-12 flex items-center justify-center space-x-6 text-sm text-gray-500 animate-fade-in-up animation-delay-200">
+              <div className="flex items-center space-x-2 hover:text-blue-600 transition-colors group">
+                <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse group-hover:animate-glow"></div>
+                <span className="font-medium">{t.hero.democraticProcess}</span>
               </div>
-              <div className="flex items-center space-x-2 hover:text-green-600 transition-colors">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse animation-delay-100"></div>
-                <span>{t.hero.technicalValidation}</span>
+              <div className="flex items-center space-x-2 hover:text-green-600 transition-colors group">
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse animation-delay-100 group-hover:animate-glow"></div>
+                <span className="font-medium">{t.hero.technicalValidation}</span>
               </div>
-              <div className="flex items-center space-x-2 hover:text-purple-600 transition-colors">
-                <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse animation-delay-200"></div>
-                <span>{t.hero.professionalCommunication}</span>
+              <div className="flex items-center space-x-2 hover:text-purple-600 transition-colors group">
+                <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse animation-delay-200 group-hover:animate-glow"></div>
+                <span className="font-medium">{t.hero.professionalCommunication}</span>
               </div>
+              <div className="flex items-center space-x-2 hover:text-orange-600 transition-colors group">
+                <div className="w-3 h-3 bg-orange-500 rounded-full animate-pulse animation-delay-300 group-hover:animate-glow"></div>
+                <span className="font-medium">{t.hero.aiAggregation}</span>
+              </div>
+            </div>
+            
+            {/* Call to action */}
+            <div className="mt-12 animate-fade-in-up animation-delay-400">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              >
+                {t.header.submitRequest}
+              </Button>
             </div>
           </div>
         </div>
@@ -234,6 +339,16 @@ export default function Home() {
           </div>
         </section>
 
+        {/* AI Process Flow */}
+        <section id="ai-process" className="mb-20">
+          <AIProcessFlow translations={t} />
+        </section>
+
+        {/* Kingdoms Table */}
+        <section id="kingdoms" className="mb-20">
+          <KingdomsTable kingdoms={mockKingdoms} translations={t} />
+        </section>
+
         {/* Current Requests */}
         <section id="requests" className="mb-20">
           <div className="flex items-center justify-between mb-10 animate-fade-in-up">
@@ -268,7 +383,7 @@ export default function Home() {
                 </p>
               </div>
               
-              <div className="grid md:grid-cols-3 gap-12">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div className="text-center group">
                   <div className="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 transition-all duration-300 group-hover:scale-110">
                     <svg className="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -302,6 +417,17 @@ export default function Home() {
                     {t.principles.professional.description}
                   </p>
                 </div>
+                <div className="text-center group">
+                  <div className="w-20 h-20 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-orange-200 transition-all duration-300 group-hover:scale-110">
+                    <svg className="w-10 h-10 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                  <h4 className="text-xl font-semibold text-gray-900 mb-4">{t.principles.aiPowered.title}</h4>
+                  <p className="text-gray-600">
+                    {t.principles.aiPowered.description}
+                  </p>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -321,6 +447,8 @@ export default function Home() {
               <span className="hover:text-green-600 transition-colors">{t.hero.technicalValidation}</span>
               <span className="text-gray-300">•</span>
               <span className="hover:text-purple-600 transition-colors">{t.hero.professionalCommunication}</span>
+              <span className="text-gray-300">•</span>
+              <span className="hover:text-orange-600 transition-colors">{t.hero.aiAggregation}</span>
             </div>
           </div>
         </div>

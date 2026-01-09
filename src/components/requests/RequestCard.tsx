@@ -53,7 +53,7 @@ export function RequestCard({ request, translations, className }: RequestCardPro
   }
 
   return (
-    <Card className={`border-0 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.01] ${className || ''}`}>
+    <Card className={`card-enhanced interactive-hover ${className || ''}`}>
       <CardHeader>
         <div className="flex items-start justify-between">
           <div className="flex-1">
@@ -74,6 +74,11 @@ export function RequestCard({ request, translations, className }: RequestCardPro
                 className={`${getStatusColor(request.status)} hover:scale-105 transition-transform`}
               >
                 {translations.status[request.status]}
+              </Badge>
+              <Badge 
+                className="bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 border-purple-200 hover:scale-105 transition-transform"
+              >
+                🤖 {translations.requests.aiAggregated}
               </Badge>
             </div>
             <CardTitle className="text-xl font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">
