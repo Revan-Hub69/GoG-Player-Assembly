@@ -1,7 +1,6 @@
 'use client'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import type { Translations } from '@/lib/translations'
 
 interface AIProcessFlowProps {
@@ -13,8 +12,8 @@ export function AIProcessFlow({ translations, className }: AIProcessFlowProps) {
   const processSteps = [
     {
       id: 1,
-      title: 'Raccolta Proposte',
-      description: 'I rappresentanti dei regni inviano le proposte della community attraverso il sistema strutturato',
+      title: translations.aiProcess.processSteps.collection.title,
+      description: translations.aiProcess.processSteps.collection.description,
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -26,8 +25,8 @@ export function AIProcessFlow({ translations, className }: AIProcessFlowProps) {
     },
     {
       id: 2,
-      title: 'Analisi AI',
-      description: 'L\'intelligenza artificiale analizza tutte le proposte, identifica temi comuni e valuta la similarità',
+      title: translations.aiProcess.processSteps.analysis.title,
+      description: translations.aiProcess.processSteps.analysis.description,
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -39,8 +38,8 @@ export function AIProcessFlow({ translations, className }: AIProcessFlowProps) {
     },
     {
       id: 3,
-      title: 'Aggregazione Intelligente',
-      description: 'L\'AI aggrega proposte simili in richieste tecnicamente valide e ben articolate',
+      title: translations.aiProcess.processSteps.aggregation.title,
+      description: translations.aiProcess.processSteps.aggregation.description,
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -52,8 +51,8 @@ export function AIProcessFlow({ translations, className }: AIProcessFlowProps) {
     },
     {
       id: 4,
-      title: 'Validazione & Invio',
-      description: 'Le richieste aggregate vengono validate e inviate professionalmente agli sviluppatori',
+      title: translations.aiProcess.processSteps.validation.title,
+      description: translations.aiProcess.processSteps.validation.description,
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -67,8 +66,8 @@ export function AIProcessFlow({ translations, className }: AIProcessFlowProps) {
 
   const aiCapabilities = [
     {
-      title: 'Analisi Semantica',
-      description: 'Comprende il significato delle proposte oltre le parole chiave',
+      title: translations.aiProcess.aiCapabilities.semanticAnalysis.title,
+      description: translations.aiProcess.aiCapabilities.semanticAnalysis.description,
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -76,8 +75,8 @@ export function AIProcessFlow({ translations, className }: AIProcessFlowProps) {
       )
     },
     {
-      title: 'Rilevamento Duplicati',
-      description: 'Identifica proposte simili anche se formulate diversamente',
+      title: translations.aiProcess.aiCapabilities.duplicateDetection.title,
+      description: translations.aiProcess.aiCapabilities.duplicateDetection.description,
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -85,8 +84,8 @@ export function AIProcessFlow({ translations, className }: AIProcessFlowProps) {
       )
     },
     {
-      title: 'Prioritizzazione',
-      description: 'Valuta l\'impatto e l\'urgenza delle richieste della community',
+      title: translations.aiProcess.aiCapabilities.prioritization.title,
+      description: translations.aiProcess.aiCapabilities.prioritization.description,
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -94,8 +93,8 @@ export function AIProcessFlow({ translations, className }: AIProcessFlowProps) {
       )
     },
     {
-      title: 'Articolazione Tecnica',
-      description: 'Trasforma feedback in specifiche tecniche comprensibili',
+      title: translations.aiProcess.aiCapabilities.technicalArticulation.title,
+      description: translations.aiProcess.aiCapabilities.technicalArticulation.description,
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -110,16 +109,16 @@ export function AIProcessFlow({ translations, className }: AIProcessFlowProps) {
       {/* AI Process Flow */}
       <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-gray-900 flex items-center space-x-3">
+          <CardTitle className="text-2xl font-bold text-slate-900 flex items-center space-x-3">
             <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
               </svg>
             </div>
-            <span>Processo AI Assembly</span>
+            <span>{translations.aiProcess.title}</span>
           </CardTitle>
           <CardDescription className="text-lg">
-            Come l'intelligenza artificiale trasforma il feedback della community in richieste professionali
+            {translations.aiProcess.subtitle}
           </CardDescription>
         </CardHeader>
         
@@ -144,8 +143,8 @@ export function AIProcessFlow({ translations, className }: AIProcessFlowProps) {
                   </div>
                   
                   {/* Content */}
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{step.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{step.description}</p>
+                  <h3 className="text-lg font-semibold text-slate-900 mb-3">{step.title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{step.description}</p>
                 </div>
               </div>
             ))}
@@ -156,16 +155,16 @@ export function AIProcessFlow({ translations, className }: AIProcessFlowProps) {
       {/* AI Capabilities */}
       <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-gray-900 flex items-center space-x-3">
+          <CardTitle className="text-2xl font-bold text-slate-900 flex items-center space-x-3">
             <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-lg flex items-center justify-center">
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <span>Capacità dell'AI</span>
+            <span>{translations.aiProcess.capabilities}</span>
           </CardTitle>
           <CardDescription className="text-lg">
-            Tecnologie avanzate per garantire qualità e precisione nell'aggregazione delle proposte
+            Tecnologie avanzate per garantire qualità e precisione nell&apos;aggregazione delle proposte
           </CardDescription>
         </CardHeader>
         
@@ -182,8 +181,8 @@ export function AIProcessFlow({ translations, className }: AIProcessFlowProps) {
                     {capability.icon}
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">{capability.title}</h4>
-                    <p className="text-gray-600">{capability.description}</p>
+                    <h4 className="text-lg font-semibold text-slate-900 mb-2">{capability.title}</h4>
+                    <p className="text-slate-600">{capability.description}</p>
                   </div>
                 </div>
               </div>
@@ -196,9 +195,9 @@ export function AIProcessFlow({ translations, className }: AIProcessFlowProps) {
       <Card className="border-0 shadow-lg bg-gradient-to-r from-blue-50 to-indigo-50 hover:shadow-xl transition-shadow duration-300">
         <CardContent className="pt-8 pb-8">
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Perché l'AI è Essenziale</h3>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              L'intelligenza artificiale garantisce che ogni voce della community sia ascoltata e che le richieste siano formulate in modo professionale e tecnicamente accurato.
+            <h3 className="text-2xl font-bold text-slate-900 mb-4">{translations.aiProcess.whyAiEssential.title}</h3>
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+              {translations.aiProcess.whyAiEssential.subtitle}
             </p>
           </div>
           
@@ -209,8 +208,8 @@ export function AIProcessFlow({ translations, className }: AIProcessFlowProps) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Nessuna Proposta Persa</h4>
-              <p className="text-gray-600">Ogni feedback viene analizzato e considerato, anche se simile ad altri</p>
+              <h4 className="text-lg font-semibold text-slate-900 mb-2">{translations.aiProcess.whyAiEssential.noProposalLost.title}</h4>
+              <p className="text-slate-600">{translations.aiProcess.whyAiEssential.noProposalLost.description}</p>
             </div>
             
             <div className="text-center group">
@@ -219,8 +218,8 @@ export function AIProcessFlow({ translations, className }: AIProcessFlowProps) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                 </svg>
               </div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Qualità Professionale</h4>
-              <p className="text-gray-600">Trasforma feedback informali in specifiche tecniche comprensibili</p>
+              <h4 className="text-lg font-semibold text-slate-900 mb-2">{translations.aiProcess.whyAiEssential.professionalQuality.title}</h4>
+              <p className="text-slate-600">{translations.aiProcess.whyAiEssential.professionalQuality.description}</p>
             </div>
             
             <div className="text-center group">
@@ -229,8 +228,8 @@ export function AIProcessFlow({ translations, className }: AIProcessFlowProps) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Efficienza Temporale</h4>
-              <p className="text-gray-600">Processa centinaia di proposte in minuti invece di settimane</p>
+              <h4 className="text-lg font-semibold text-slate-900 mb-2">{translations.aiProcess.whyAiEssential.timeEfficiency.title}</h4>
+              <p className="text-slate-600">{translations.aiProcess.whyAiEssential.timeEfficiency.description}</p>
             </div>
           </div>
         </CardContent>

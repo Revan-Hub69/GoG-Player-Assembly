@@ -231,7 +231,7 @@ export function RepresentativeApplicationForm({ translations, onClose }: Represe
                         type="text"
                         value={formData.playerName}
                         onChange={(e) => handleInputChange('playerName', e.target.value)}
-                        placeholder="Il tuo nome nel gioco"
+                        placeholder={translations.representativeForm.personalInfo.playerName.replace(' *', '')}
                         className="w-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         required
                       />
@@ -245,7 +245,7 @@ export function RepresentativeApplicationForm({ translations, onClose }: Represe
                         type="email"
                         value={formData.email}
                         onChange={(e) => handleInputChange('email', e.target.value)}
-                        placeholder="tua.email@esempio.com"
+                        placeholder="your.email@example.com"
                         className="w-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         required
                       />
@@ -262,7 +262,7 @@ export function RepresentativeApplicationForm({ translations, onClose }: Represe
                         type="text"
                         value={formData.discordTag}
                         onChange={(e) => handleInputChange('discordTag', e.target.value)}
-                        placeholder="NomeUtente#1234"
+                        placeholder="Username#1234"
                         className="w-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         required
                       />
@@ -291,7 +291,7 @@ export function RepresentativeApplicationForm({ translations, onClose }: Represe
                         type="text"
                         value={formData.kingdomName}
                         onChange={(e) => handleInputChange('kingdomName', e.target.value)}
-                        placeholder="Nome del tuo regno"
+                        placeholder={translations.representativeForm.kingdomInfo.kingdomName.replace(' *', '')}
                         className="w-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         required
                       />

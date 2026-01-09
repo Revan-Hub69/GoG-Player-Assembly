@@ -47,6 +47,58 @@ export interface Translations {
     subtitle: string
     capabilities: string
     benefits: string
+    processSteps: {
+      collection: {
+        title: string
+        description: string
+      }
+      analysis: {
+        title: string
+        description: string
+      }
+      aggregation: {
+        title: string
+        description: string
+      }
+      validation: {
+        title: string
+        description: string
+      }
+    }
+    aiCapabilities: {
+      semanticAnalysis: {
+        title: string
+        description: string
+      }
+      duplicateDetection: {
+        title: string
+        description: string
+      }
+      prioritization: {
+        title: string
+        description: string
+      }
+      technicalArticulation: {
+        title: string
+        description: string
+      }
+    }
+    whyAiEssential: {
+      title: string
+      subtitle: string
+      noProposalLost: {
+        title: string
+        description: string
+      }
+      professionalQuality: {
+        title: string
+        description: string
+      }
+      timeEfficiency: {
+        title: string
+        description: string
+      }
+    }
   }
   // Kingdoms
   kingdoms: {
@@ -62,6 +114,11 @@ export interface Translations {
     lastActivity: string
     proposals: string
     engagement: string
+    mostActiveKingdoms: string
+    viewAllKingdoms: string
+    representativePositionsAvailable: string
+    democraticRepresentationRequired: string
+    apply: string
     status: {
       active: string
       pending: string
@@ -145,9 +202,48 @@ export interface Translations {
       description: string
     }
   }
-  // Footer
-  footer: {
-    description: string
+  // Problem statement
+  problemStatement: {
+    title: string
+    subtitle: string
+    problems: {
+      title: string
+      socialNoise: {
+        title: string
+        description: string
+      }
+      toxicity: {
+        title: string
+        description: string
+      }
+      dominantVoices: {
+        title: string
+        description: string
+      }
+      unusableFeedback: {
+        title: string
+        description: string
+      }
+    }
+    solutions: {
+      title: string
+      organizedStructure: {
+        title: string
+        description: string
+      }
+      professionalCommunication: {
+        title: string
+        description: string
+      }
+      fairRepresentation: {
+        title: string
+        description: string
+      }
+      technicalValidation: {
+        title: string
+        description: string
+      }
+    }
   }
   // Project costs
   projectCosts: {
@@ -259,6 +355,10 @@ export interface Translations {
       close: string
     }
   }
+  // Footer
+  footer: {
+    description: string
+  }
 }
 
 export const translations: Record<Language, Translations> = {
@@ -301,10 +401,62 @@ export const translations: Record<Language, Translations> = {
       }
     },
     aiProcess: {
-      title: 'Processo AI Intelligente',
+      title: 'Processo AI Assembly',
       subtitle: 'Come l\'intelligenza artificiale trasforma il feedback della community in richieste professionali',
       capabilities: 'Capacità dell\'AI',
-      benefits: 'Perché l\'AI è Essenziale'
+      benefits: 'Perché l\'AI è Essenziale',
+      processSteps: {
+        collection: {
+          title: 'Raccolta Proposte',
+          description: 'I rappresentanti dei regni inviano le proposte della community attraverso il sistema strutturato'
+        },
+        analysis: {
+          title: 'Analisi AI',
+          description: 'L\'intelligenza artificiale analizza tutte le proposte, identifica temi comuni e valuta la similarità'
+        },
+        aggregation: {
+          title: 'Aggregazione Intelligente',
+          description: 'L\'AI aggrega proposte simili in richieste tecnicamente valide e ben articolate'
+        },
+        validation: {
+          title: 'Validazione & Invio',
+          description: 'Le richieste aggregate vengono validate e inviate professionalmente agli sviluppatori'
+        }
+      },
+      aiCapabilities: {
+        semanticAnalysis: {
+          title: 'Analisi Semantica',
+          description: 'Comprende il significato delle proposte oltre le parole chiave'
+        },
+        duplicateDetection: {
+          title: 'Rilevamento Duplicati',
+          description: 'Identifica proposte simili anche se formulate diversamente'
+        },
+        prioritization: {
+          title: 'Prioritizzazione',
+          description: 'Valuta l\'impatto e l\'urgenza delle richieste della community'
+        },
+        technicalArticulation: {
+          title: 'Articolazione Tecnica',
+          description: 'Trasforma feedback in specifiche tecniche comprensibili'
+        }
+      },
+      whyAiEssential: {
+        title: 'Perché l\'AI è Essenziale',
+        subtitle: 'L\'intelligenza artificiale garantisce che ogni voce della community sia ascoltata e che le richieste siano formulate in modo professionale e tecnicamente accurato.',
+        noProposalLost: {
+          title: 'Nessuna Proposta Persa',
+          description: 'Ogni feedback viene analizzato e considerato, anche se simile ad altri'
+        },
+        professionalQuality: {
+          title: 'Qualità Professionale',
+          description: 'Trasforma feedback informali in specifiche tecniche comprensibili'
+        },
+        timeEfficiency: {
+          title: 'Efficienza Temporale',
+          description: 'Processa centinaia di proposte in minuti invece di settimane'
+        }
+      }
     },
     kingdoms: {
       title: 'Regni Partecipanti',
@@ -319,6 +471,11 @@ export const translations: Record<Language, Translations> = {
       lastActivity: 'Ultima attività',
       proposals: 'Proposte',
       engagement: 'Coinvolgimento',
+      mostActiveKingdoms: 'Regni Più Attivi',
+      viewAllKingdoms: 'Visualizza Tutti i Regni',
+      representativePositionsAvailable: 'Posizioni Rappresentante Disponibili',
+      democraticRepresentationRequired: 'Il sistema di rappresentanza democratica richiede delegati dei regni',
+      apply: 'Candidati',
       status: {
         active: 'Attivo',
         pending: 'In Attesa',
@@ -397,6 +554,49 @@ export const translations: Record<Language, Translations> = {
         description: 'L\'AI identifica pattern comuni, aggrega proposte simili e garantisce che nessun feedback della community venga perso o ignorato.'
       }
     },
+    problemStatement: {
+      title: 'Il Problema dei Social Media',
+      subtitle: 'I canali social tradizionali creano rumore, frustrazione e feedback inutilizzabile. Il GoG Player Assembly risolve questi problemi strutturali.',
+      problems: {
+        title: 'Problemi Attuali',
+        socialNoise: {
+          title: 'Rumore Sociale',
+          description: 'Migliaia di messaggi non strutturati rendono impossibile identificare feedback utile'
+        },
+        toxicity: {
+          title: 'Flame e Tossicità',
+          description: 'Discussioni degenerano in conflitti personali invece di feedback costruttivo'
+        },
+        dominantVoices: {
+          title: 'Voci Dominanti',
+          description: 'Regni più grandi o giocatori più attivi soffocano le voci dei regni più piccoli'
+        },
+        unusableFeedback: {
+          title: 'Feedback Inutilizzabile',
+          description: 'Richieste vaghe e non tecniche che gli sviluppatori non possono implementare'
+        }
+      },
+      solutions: {
+        title: 'Soluzioni Assembly',
+        organizedStructure: {
+          title: 'Struttura Organizzata',
+          description: 'Canali dedicati e processi strutturati per raccogliere feedback mirato'
+        },
+        professionalCommunication: {
+          title: 'Comunicazione Professionale',
+          description: 'Linguaggio tecnico e obiettivi chiari eliminano conflitti emotivi'
+        },
+        fairRepresentation: {
+          title: 'Rappresentanza Equa',
+          description: 'Un rappresentante per regno garantisce che ogni community abbia voce'
+        },
+        technicalValidation: {
+          title: 'Validazione Tecnica',
+          description: 'AI trasforma richieste in specifiche implementabili dagli sviluppatori'
+        }
+      }
+    },
+    // Footer
     footer: {
       description: 'GoG Player Assembly - Trasformare il feedback della community in richieste di sviluppo attuabili tramite AI'
     },
@@ -550,7 +750,59 @@ export const translations: Record<Language, Translations> = {
       title: 'Intelligent AI Process',
       subtitle: 'How artificial intelligence transforms community feedback into professional requests',
       capabilities: 'AI Capabilities',
-      benefits: 'Why AI is Essential'
+      benefits: 'Why AI is Essential',
+      processSteps: {
+        collection: {
+          title: 'Proposal Collection',
+          description: 'Kingdom representatives submit community proposals through the structured system'
+        },
+        analysis: {
+          title: 'AI Analysis',
+          description: 'Artificial intelligence analyzes all proposals, identifies common themes and evaluates similarity'
+        },
+        aggregation: {
+          title: 'Intelligent Aggregation',
+          description: 'AI aggregates similar proposals into technically valid and well-articulated requests'
+        },
+        validation: {
+          title: 'Validation & Submission',
+          description: 'Aggregated requests are validated and professionally submitted to developers'
+        }
+      },
+      aiCapabilities: {
+        semanticAnalysis: {
+          title: 'Semantic Analysis',
+          description: 'Understands the meaning of proposals beyond keywords'
+        },
+        duplicateDetection: {
+          title: 'Duplicate Detection',
+          description: 'Identifies similar proposals even if formulated differently'
+        },
+        prioritization: {
+          title: 'Prioritization',
+          description: 'Evaluates the impact and urgency of community requests'
+        },
+        technicalArticulation: {
+          title: 'Technical Articulation',
+          description: 'Transforms feedback into understandable technical specifications'
+        }
+      },
+      whyAiEssential: {
+        title: 'Why AI is Essential',
+        subtitle: 'Artificial intelligence ensures that every community voice is heard and that requests are formulated professionally and technically accurately.',
+        noProposalLost: {
+          title: 'No Proposal Lost',
+          description: 'Every feedback is analyzed and considered, even if similar to others'
+        },
+        professionalQuality: {
+          title: 'Professional Quality',
+          description: 'Transforms informal feedback into understandable technical specifications'
+        },
+        timeEfficiency: {
+          title: 'Time Efficiency',
+          description: 'Processes hundreds of proposals in minutes instead of weeks'
+        }
+      }
     },
     kingdoms: {
       title: 'Participating Kingdoms',
@@ -565,6 +817,11 @@ export const translations: Record<Language, Translations> = {
       lastActivity: 'Last activity',
       proposals: 'Proposals',
       engagement: 'Engagement',
+      mostActiveKingdoms: 'Most Active Kingdoms',
+      viewAllKingdoms: 'View All Kingdoms',
+      representativePositionsAvailable: 'Representative Positions Available',
+      democraticRepresentationRequired: 'Democratic representation system requires kingdom delegates',
+      apply: 'Apply',
       status: {
         active: 'Active',
         pending: 'Pending',
@@ -643,6 +900,49 @@ export const translations: Record<Language, Translations> = {
         description: 'AI identifies common patterns, aggregates similar proposals, and ensures no community feedback is lost or ignored.'
       }
     },
+    problemStatement: {
+      title: 'Social Media Problem',
+      subtitle: 'Traditional social channels create noise, frustration and unusable feedback. GoG Player Assembly solves these structural problems.',
+      problems: {
+        title: 'Current Problems',
+        socialNoise: {
+          title: 'Social Noise',
+          description: 'Thousands of unstructured messages make it impossible to identify useful feedback'
+        },
+        toxicity: {
+          title: 'Flames and Toxicity',
+          description: 'Discussions degenerate into personal conflicts instead of constructive feedback'
+        },
+        dominantVoices: {
+          title: 'Dominant Voices',
+          description: 'Larger kingdoms or more active players drown out the voices of smaller kingdoms'
+        },
+        unusableFeedback: {
+          title: 'Unusable Feedback',
+          description: 'Vague and non-technical requests that developers cannot implement'
+        }
+      },
+      solutions: {
+        title: 'Assembly Solutions',
+        organizedStructure: {
+          title: 'Organized Structure',
+          description: 'Dedicated channels and structured processes to collect targeted feedback'
+        },
+        professionalCommunication: {
+          title: 'Professional Communication',
+          description: 'Technical language and clear objectives eliminate emotional conflicts'
+        },
+        fairRepresentation: {
+          title: 'Fair Representation',
+          description: 'One representative per kingdom ensures every community has a voice'
+        },
+        technicalValidation: {
+          title: 'Technical Validation',
+          description: 'AI transforms requests into specifications implementable by developers'
+        }
+      }
+    },
+    // Footer
     footer: {
       description: 'GoG Player Assembly - Transforming community feedback into actionable development requests through AI'
     },

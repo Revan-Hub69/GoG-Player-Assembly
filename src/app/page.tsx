@@ -358,9 +358,9 @@ export default function Home() {
           <Card className="border-0 shadow-lg bg-gradient-to-r from-red-50 to-orange-50 hover:shadow-xl transition-shadow duration-300 card-focus" tabIndex={0}>
             <CardContent className="pt-12 pb-12">
               <div className="text-center mb-12">
-                <h3 className="text-3xl font-bold text-gray-900 mb-6">Il Problema dei Social Media</h3>
-                <p className="text-lg text-gray-600 max-w-4xl mx-auto">
-                  I canali social tradizionali creano rumore, frustrazione e feedback inutilizzabile. Il GoG Player Assembly risolve questi problemi strutturali.
+                <h3 className="text-3xl font-bold text-slate-900 mb-6">{t.problemStatement.title}</h3>
+                <p className="text-lg text-slate-600 max-w-4xl mx-auto">
+                  {t.problemStatement.subtitle}
                 </p>
               </div>
               
@@ -371,35 +371,35 @@ export default function Home() {
                     <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
                     </svg>
-                    Problemi Attuali
+                    {t.problemStatement.problems.title}
                   </h4>
                   <div className="space-y-4">
                     <div className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
                       <div>
-                        <h5 className="font-medium text-gray-900">Rumore Sociale</h5>
-                        <p className="text-gray-600 text-sm">Migliaia di messaggi non strutturati rendono impossibile identificare feedback utile</p>
+                        <h5 className="font-medium text-slate-900">{t.problemStatement.problems.socialNoise.title}</h5>
+                        <p className="text-slate-600 text-sm">{t.problemStatement.problems.socialNoise.description}</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
                       <div>
-                        <h5 className="font-medium text-gray-900">Flame e Tossicità</h5>
-                        <p className="text-gray-600 text-sm">Discussioni degenerano in conflitti personali invece di feedback costruttivo</p>
+                        <h5 className="font-medium text-slate-900">{t.problemStatement.problems.toxicity.title}</h5>
+                        <p className="text-slate-600 text-sm">{t.problemStatement.problems.toxicity.description}</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
                       <div>
-                        <h5 className="font-medium text-gray-900">Voci Dominanti</h5>
-                        <p className="text-gray-600 text-sm">Regni più grandi o giocatori più attivi soffocano le voci dei regni più piccoli</p>
+                        <h5 className="font-medium text-slate-900">{t.problemStatement.problems.dominantVoices.title}</h5>
+                        <p className="text-slate-600 text-sm">{t.problemStatement.problems.dominantVoices.description}</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
                       <div>
-                        <h5 className="font-medium text-gray-900">Feedback Inutilizzabile</h5>
-                        <p className="text-gray-600 text-sm">Richieste vaghe e non tecniche che gli sviluppatori non possono implementare</p>
+                        <h5 className="font-medium text-slate-900">{t.problemStatement.problems.unusableFeedback.title}</h5>
+                        <p className="text-slate-600 text-sm">{t.problemStatement.problems.unusableFeedback.description}</p>
                       </div>
                     </div>
                   </div>
@@ -411,35 +411,35 @@ export default function Home() {
                     <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    Soluzioni Assembly
+                    {t.problemStatement.solutions.title}
                   </h4>
                   <div className="space-y-4">
                     <div className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
                       <div>
-                        <h5 className="font-medium text-gray-900">Struttura Organizzata</h5>
-                        <p className="text-gray-600 text-sm">Canali dedicati e processi strutturati per raccogliere feedback mirato</p>
+                        <h5 className="font-medium text-slate-900">{t.problemStatement.solutions.organizedStructure.title}</h5>
+                        <p className="text-slate-600 text-sm">{t.problemStatement.solutions.organizedStructure.description}</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
                       <div>
-                        <h5 className="font-medium text-gray-900">Comunicazione Professionale</h5>
-                        <p className="text-gray-600 text-sm">Linguaggio tecnico e obiettivi chiari eliminano conflitti emotivi</p>
+                        <h5 className="font-medium text-slate-900">{t.problemStatement.solutions.professionalCommunication.title}</h5>
+                        <p className="text-slate-600 text-sm">{t.problemStatement.solutions.professionalCommunication.description}</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
                       <div>
-                        <h5 className="font-medium text-gray-900">Rappresentanza Equa</h5>
-                        <p className="text-gray-600 text-sm">Un rappresentante per regno garantisce che ogni community abbia voce</p>
+                        <h5 className="font-medium text-slate-900">{t.problemStatement.solutions.fairRepresentation.title}</h5>
+                        <p className="text-slate-600 text-sm">{t.problemStatement.solutions.fairRepresentation.description}</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
                       <div>
-                        <h5 className="font-medium text-gray-900">Validazione Tecnica</h5>
-                        <p className="text-gray-600 text-sm">AI trasforma richieste in specifiche implementabili dagli sviluppatori</p>
+                        <h5 className="font-medium text-slate-900">{t.problemStatement.solutions.technicalValidation.title}</h5>
+                        <p className="text-slate-600 text-sm">{t.problemStatement.solutions.technicalValidation.description}</p>
                       </div>
                     </div>
                   </div>

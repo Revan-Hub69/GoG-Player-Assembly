@@ -32,14 +32,14 @@ export function KingdomsTable({ kingdoms, translations, className }: KingdomsTab
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
-              <span>Kingdom Participation</span>
+              <span>{translations.kingdoms.title}</span>
             </div>
             <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </CardTitle>
           <CardDescription className="text-sm text-slate-600">
-            View all participating kingdoms and apply for representative positions
+            {translations.kingdoms.viewAllKingdoms}
           </CardDescription>
         </CardHeader>
         
@@ -48,21 +48,21 @@ export function KingdomsTable({ kingdoms, translations, className }: KingdomsTab
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
             <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center">
               <div className="text-xl font-bold text-slate-900">{kingdoms.length}</div>
-              <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">Total</div>
+              <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">{translations.kingdoms.totalKingdoms}</div>
             </div>
             <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center">
               <div className="text-xl font-bold text-green-600">{activeKingdoms.length}</div>
-              <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">Active</div>
+              <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">{translations.kingdoms.activeKingdoms}</div>
             </div>
             <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center">
               <div className="text-xl font-bold text-blue-600">
                 {kingdoms.filter(k => k.representative_name).length}
               </div>
-              <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">Represented</div>
+              <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">{translations.kingdoms.withRepresentative}</div>
             </div>
             <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center">
               <div className="text-xl font-bold text-slate-900">{totalProposals}</div>
-              <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">Proposals</div>
+              <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">{translations.kingdoms.totalProposals}</div>
             </div>
           </div>
 
@@ -72,7 +72,7 @@ export function KingdomsTable({ kingdoms, translations, className }: KingdomsTab
               <svg className="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span>Most Active Kingdoms</span>
+              <span>{translations.kingdoms.mostActiveKingdoms}</span>
             </h4>
             {activeKingdoms.slice(0, 3).map((kingdom, index) => (
               <div key={kingdom.server_id} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-200">
@@ -87,7 +87,7 @@ export function KingdomsTable({ kingdoms, translations, className }: KingdomsTab
                 </div>
                 <div className="text-right">
                   <p className="text-sm font-semibold text-slate-900">{kingdom.proposals_submitted}</p>
-                  <p className="text-xs text-slate-500">proposals</p>
+                  <p className="text-xs text-slate-500">{translations.kingdoms.proposals}</p>
                 </div>
               </div>
             ))}
@@ -99,14 +99,14 @@ export function KingdomsTable({ kingdoms, translations, className }: KingdomsTab
               <div className="flex items-center justify-between">
                 <div>
                   <h4 className="font-semibold text-white mb-1 text-sm">
-                    {availableSlots.length} Representative Positions Available
+                    {availableSlots.length} {translations.kingdoms.representativePositionsAvailable}
                   </h4>
                   <p className="text-xs text-slate-300">
-                    Democratic representation system requires kingdom delegates
+                    {translations.kingdoms.democraticRepresentationRequired}
                   </p>
                 </div>
                 <Badge className="bg-blue-600 text-white border-blue-500 text-xs px-2 py-1">
-                  Apply
+                  {translations.kingdoms.apply}
                 </Badge>
               </div>
             </div>
@@ -121,7 +121,7 @@ export function KingdomsTable({ kingdoms, translations, className }: KingdomsTab
             }}
           >
             <div className="flex items-center justify-center space-x-2">
-              <span>View All Kingdoms</span>
+              <span>{translations.kingdoms.viewAllKingdoms}</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>

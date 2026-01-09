@@ -11,10 +11,9 @@ interface KingdomsModalProps {
   kingdoms: KingdomStats[]
   translations: Translations
   onClose: () => void
-  className?: string
 }
 
-export function KingdomsModal({ kingdoms, translations, onClose, className }: KingdomsModalProps) {
+export function KingdomsModal({ kingdoms, translations, onClose }: KingdomsModalProps) {
   const [showApplicationForm, setShowApplicationForm] = useState(false)
   const modalRef = useRef<HTMLDivElement>(null)
   const previousFocusRef = useRef<HTMLElement | null>(null)
@@ -88,10 +87,10 @@ export function KingdomsModal({ kingdoms, translations, onClose, className }: Ki
   }
 
   const getEngagementLevel = (score: number): { level: string; color: string } => {
-    if (score >= 0.8) return { level: 'High', color: 'text-green-600' }
-    if (score >= 0.6) return { level: 'Medium', color: 'text-blue-600' }
-    if (score >= 0.4) return { level: 'Low', color: 'text-amber-600' }
-    return { level: 'Minimal', color: 'text-slate-500' }
+    if (score >= 0.8) return { level: translations.kingdoms.engagementLevels.excellent, color: 'text-green-600' }
+    if (score >= 0.6) return { level: translations.kingdoms.engagementLevels.good, color: 'text-blue-600' }
+    if (score >= 0.4) return { level: translations.kingdoms.engagementLevels.moderate, color: 'text-amber-600' }
+    return { level: translations.kingdoms.engagementLevels.minimal, color: 'text-slate-500' }
   }
 
   const formatDate = (dateString: string): string => {
@@ -206,11 +205,11 @@ export function KingdomsModal({ kingdoms, translations, onClose, className }: Ki
                     <div className="flex items-center space-x-4 text-xs text-slate-400">
                       <div className="flex items-center space-x-1">
                         <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
-                        <span>Democratic process</span>
+                        <span>{translations.hero.democraticProcess}</span>
                       </div>
                       <div className="flex items-center space-x-1">
                         <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
-                        <span>Technical governance</span>
+                        <span>{translations.hero.technicalValidation}</span>
                       </div>
                     </div>
                   </div>
@@ -226,7 +225,7 @@ export function KingdomsModal({ kingdoms, translations, onClose, className }: Ki
 
             {/* Kingdoms List */}
             <div className="space-y-3">
-              {kingdoms.map((kingdom, index) => {
+              {kingdoms.map((kingdom) => {
                 const engagement = getEngagementLevel(kingdom.engagement_score)
                 
                 return (
@@ -290,7 +289,7 @@ export function KingdomsModal({ kingdoms, translations, onClose, className }: Ki
                       {/* Proposals */}
                       <div className="col-span-1 text-center">
                         <div className="text-sm font-semibold text-slate-900">{kingdom.proposals_submitted}</div>
-                        <div className="text-xs text-slate-500">Props</div>
+                        <div className="text-xs text-slate-500">{translations.kingdoms.proposals}</div>
                       </div>
 
                       {/* Engagement */}
@@ -305,8 +304,8 @@ export function KingdomsModal({ kingdoms, translations, onClose, className }: Ki
                     {/* Additional Info */}
                     <div className="mt-3 pt-3 border-t border-slate-200">
                       <div className="grid grid-cols-2 gap-4 text-xs text-slate-500">
-                        <div>Joined: {formatDate(kingdom.joined_at)}</div>
-                        <div>Last active: {formatDate(kingdom.last_activity_at)}</div>
+                        <div>{translations.kingdoms.joined}: {formatDate(kingdom.joined_at)}</div>
+                        <div>{translations.kingdoms.lastActivity}: {formatDate(kingdom.last_activity_at)}</div>
                       </div>
                     </div>
                   </div>
@@ -321,8 +320,8 @@ export function KingdomsModal({ kingdoms, translations, onClose, className }: Ki
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                   </svg>
                 </div>
-                <h4 className="text-sm font-medium text-slate-900 mb-2">No kingdoms registered</h4>
-                <p className="text-xs text-slate-500">Kingdoms will appear here as they join the assembly.</p>
+                <h4 className="text-sm font-medium text-slate-900 mb-2">{translations.kingdoms.noRepresentative}</h4>
+                <p className="text-xs text-slate-500">{translations.kingdoms.viewAllKingdoms}</p>
               </div>
             )}
           </div>
