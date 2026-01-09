@@ -1,0 +1,25 @@
+# Ignore the separate open letter site directory
+gog-open-letter-site/
+gog-open-letter/
+
+# Ignore development files
+*.log
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore build artifacts
+.next/
+out/
+dist/
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
