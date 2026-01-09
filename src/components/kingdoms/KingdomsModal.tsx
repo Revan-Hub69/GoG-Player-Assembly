@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { RepresentativeApplicationForm } from '@/components/forms/RepresentativeApplicationForm'
@@ -16,6 +16,66 @@ interface KingdomsModalProps {
 
 export function KingdomsModal({ kingdoms, translations, onClose, className }: KingdomsModalProps) {
   const [showApplicationForm, setShowApplicationForm] = useState(false)
+  const modalRef = useRef<HTMLDivElement>(null)
+  const previousFocusRef = useRef<HTMLElement | null>(null)
+
+  // Focus management and keyboard handling
+  useEffect(() => {
+    // Store the previously focused element
+    previousFocusRef.current = document.activeElement as HTMLElement
+
+    // Focus the modal when it opens
+    if (modalRef.current) {
+      modalRef.current.focus()
+    }
+
+    // Handle escape key
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose()
+      }
+    }
+
+    // Trap focus within modal
+    const handleTabKey = (e: KeyboardEvent) => {
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusableElements = modalRef.current.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+        const firstElement = focusableElements[0] as HTMLElement
+        const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault()
+            lastElement.focus()
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault()
+            firstElement.focus()
+          }
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleEscape)
+    document.addEventListener('keydown', handleTabKey)
+
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.removeEventListener('keydown', handleTabKey)
+      document.body.style.overflow = 'unset'
+      
+      // Return focus to the element that opened the modal
+      if (previousFocusRef.current) {
+        previousFocusRef.current.focus()
+      }
+    }
+  }, [onClose])
 
   const getStatusColor = (status: string): string => {
     const colors: Record<string, string> = {
@@ -55,48 +115,60 @@ export function KingdomsModal({ kingdoms, translations, onClose, className }: Ki
   }
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-      <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-        {/* Backdrop */}
-        <div 
-          className="fixed inset-0 bg-slate-900 bg-opacity-75 transition-opacity" 
-          aria-hidden="true"
-          onClick={onClose}
-        ></div>
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      role="dialog" 
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      {/* Backdrop with proper opacity and blur */}
+      <div 
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300" 
+        onClick={onClose}
+        aria-hidden="true"
+      />
 
-        {/* Modal panel */}
-        <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-6xl">
-          <div className="bg-white px-6 py-6">
-            {/* Header */}
-            <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-200">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-slate-900" id="modal-title">
-                    Kingdom Participation Registry
-                  </h3>
-                  <p className="text-sm text-slate-500">
-                    Democratic representation system overview
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={onClose}
-                className="rounded-md bg-white text-slate-400 hover:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 p-2"
-                aria-label="Close"
-              >
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+      {/* Modal container - centered and properly sized */}
+      <div 
+        ref={modalRef}
+        className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-xl shadow-2xl animate-fade-in-up overflow-hidden focus:outline-none"
+        tabIndex={-1}
+      >
+        {/* Header - fixed at top */}
+        <div className="sticky top-0 z-10 bg-white border-b border-slate-200 px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center">
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
-              </button>
+              </div>
+              <div>
+                <h2 className="text-lg font-semibold text-slate-900" id="modal-title">
+                  Kingdom Participation Registry
+                </h2>
+                <p className="text-sm text-slate-500">
+                  Democratic representation system overview
+                </p>
+              </div>
             </div>
+            <button
+              onClick={onClose}
+              className="rounded-lg p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+              aria-label="Close modal"
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
 
+        {/* Scrollable content */}
+        <div className="overflow-y-auto max-h-[calc(90vh-80px)]">
+          <div className="p-6">
             {/* Stats Grid */}
-            <div className="grid grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
                 <div className="text-2xl font-bold text-slate-900">{kingdoms.length}</div>
                 <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">Total Kingdoms</div>
@@ -122,12 +194,12 @@ export function KingdomsModal({ kingdoms, translations, onClose, className }: Ki
               <div className="mb-6 p-4 bg-slate-900 rounded-lg border border-slate-700">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="text-sm font-semibold text-white mb-1 flex items-center space-x-2">
+                    <h3 className="text-sm font-semibold text-white mb-1 flex items-center space-x-2">
                       <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
                       <span>Representative Position Available</span>
-                    </h4>
+                    </h3>
                     <p className="text-xs text-slate-300 mb-3">
                       {availableSlots.length} kingdoms require democratic representation
                     </p>
@@ -153,7 +225,7 @@ export function KingdomsModal({ kingdoms, translations, onClose, className }: Ki
             )}
 
             {/* Kingdoms List */}
-            <div className="max-h-96 overflow-y-auto space-y-3">
+            <div className="space-y-3">
               {kingdoms.map((kingdom, index) => {
                 const engagement = getEngagementLevel(kingdom.engagement_score)
                 
