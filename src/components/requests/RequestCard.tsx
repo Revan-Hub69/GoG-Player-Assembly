@@ -50,31 +50,61 @@ export function RequestCard({ request, className }: RequestCardProps) {
     return colors[status]
   }
 
+  const getCategoryLabel = (category: CommunityRequest['category']): string => {
+    const labels: Record<CommunityRequest['category'], string> = {
+      gameplay: 'Gameplay',
+      economy: 'Economia',
+      social: 'Sociale',
+      technical: 'Tecnico'
+    }
+    return labels[category]
+  }
+
+  const getPriorityLabel = (priority: CommunityRequest['priority']): string => {
+    const labels: Record<CommunityRequest['priority'], string> = {
+      critical: 'Critica',
+      high: 'Alta',
+      medium: 'Media',
+      low: 'Bassa'
+    }
+    return labels[priority]
+  }
+
+  const getStatusLabel = (status: CommunityRequest['status']): string => {
+    const labels: Record<CommunityRequest['status'], string> = {
+      draft: 'Bozza',
+      review: 'In Revisione',
+      submitted: 'Inviata',
+      acknowledged: 'Riconosciuta'
+    }
+    return labels[status]
+  }
+
   return (
-    <Card className={`border-0 shadow-sm hover:shadow-md transition-shadow ${className || ''}`}>
+    <Card className={`border-0 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.01] ${className || ''}`}>
       <CardHeader>
         <div className="flex items-start justify-between">
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-3">
               <Badge 
                 variant="outline" 
-                className={getCategoryColor(request.category)}
+                className={`${getCategoryColor(request.category)} hover:scale-105 transition-transform`}
               >
-                {request.category.charAt(0).toUpperCase() + request.category.slice(1)}
+                {getCategoryLabel(request.category)}
               </Badge>
               <Badge 
                 variant="outline" 
-                className={getPriorityColor(request.priority)}
+                className={`${getPriorityColor(request.priority)} hover:scale-105 transition-transform`}
               >
-                {request.priority.charAt(0).toUpperCase() + request.priority.slice(1)} Priority
+                Priorità {getPriorityLabel(request.priority)}
               </Badge>
               <Badge 
-                className={getStatusColor(request.status)}
+                className={`${getStatusColor(request.status)} hover:scale-105 transition-transform`}
               >
-                {request.status.charAt(0).toUpperCase() + request.status.slice(1)}
+                {getStatusLabel(request.status)}
               </Badge>
             </div>
-            <CardTitle className="text-xl font-bold text-gray-900 mb-2">
+            <CardTitle className="text-xl font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">
               {request.title}
             </CardTitle>
             <CardDescription className="text-gray-600 leading-relaxed">
@@ -87,28 +117,28 @@ export function RequestCard({ request, className }: RequestCardProps) {
       <CardContent>
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold text-gray-900 mb-2">Technical Details</h4>
+            <h4 className="font-semibold text-gray-900 mb-2">Dettagli Tecnici</h4>
             <p className="text-sm text-gray-600 mb-4">
               {request.technicalDetails}
             </p>
-            <h4 className="font-semibold text-gray-900 mb-2">Expected Outcome</h4>
+            <h4 className="font-semibold text-gray-900 mb-2">Risultato Atteso</h4>
             <p className="text-sm text-gray-600">
               {request.expectedOutcome}
             </p>
           </div>
           <div>
-            <h4 className="font-semibold text-gray-900 mb-2">Request Details</h4>
+            <h4 className="font-semibold text-gray-900 mb-2">Dettagli Richiesta</h4>
             <dl className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <dt className="text-gray-500">Submitted by:</dt>
+                <dt className="text-gray-500">Inviata da:</dt>
                 <dd className="text-gray-900">{request.submittedBy}</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-gray-500">Date:</dt>
+                <dt className="text-gray-500">Data:</dt>
                 <dd className="text-gray-900">{request.submittedDate}</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-gray-500">Request ID:</dt>
+                <dt className="text-gray-500">ID Richiesta:</dt>
                 <dd className="text-gray-900 font-mono">#{request.id.padStart(4, '0')}</dd>
               </div>
             </dl>

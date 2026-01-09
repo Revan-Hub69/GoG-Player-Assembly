@@ -24,22 +24,22 @@ export function Header({ className }: HeaderProps) {
               href="#process" 
               className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
             >
-              Process
+              Processo
             </a>
             <a 
               href="#requests" 
               className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
             >
-              Requests
+              Richieste
             </a>
             <a 
               href="#representatives" 
               className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
             >
-              Representatives
+              Rappresentanti
             </a>
-            <Button variant="outline" size="sm">
-              Submit Request
+            <Button variant="outline" size="sm" className="hover:scale-105 transition-transform">
+              Invia Richiesta
             </Button>
           </nav>
         </div>
