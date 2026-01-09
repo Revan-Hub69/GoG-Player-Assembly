@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Clean, minimal design system with enhanced visuals */
+/* Enhanced fade-in system */
 @layer base {
   * {
     border-color: theme(colors.gray.200);
@@ -11,21 +11,64 @@
     color: theme(colors.gray.900);
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  /* Universal fade-in on page load */
+  .fade-in-on-load {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  /* Intersection Observer fade-in */
+  .fade-in-observer {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .fade-in-observer.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Professional animations and effects */
+/* Enhanced focus states for accessibility */
 @layer utilities {
-  .transition-smooth {
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  .focus-enhanced:focus {
+    outline: 3px solid #3b82f6;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.1);
+    transition: all 0.2s ease-out;
   }
-  
-  .hover-lift:hover {
+
+  .focus-enhanced:focus-visible {
+    outline: 3px solid #3b82f6;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.1);
+  }
+
+  /* Button focus states */
+  .btn-focus:focus {
+    outline: none;
+    box-shadow: 
+      0 0 0 3px rgba(59, 130, 246, 0.5),
+      0 4px 12px rgba(0, 0, 0, 0.15);
     transform: translateY(-1px);
   }
-  
-  .focus-ring:focus {
-    outline: 2px solid theme(colors.blue.500);
+
+  /* Input focus states */
+  .input-focus:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 
+      0 0 0 3px rgba(59, 130, 246, 0.1),
+      0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Card focus states */
+  .card-focus:focus {
+    outline: 2px solid #3b82f6;
     outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
   }
 
   /* Enhanced typing animation */
@@ -148,6 +191,8 @@
       transform: translateY(-2px);
     }
   }
+
+  /* Enhanced fade in animations */
   @keyframes fadeInUp {
     from {
       opacity: 0;

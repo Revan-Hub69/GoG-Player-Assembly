@@ -171,8 +171,8 @@ export const translations: Record<Language, Translations> = {
       aiAggregation: 'Aggregazione Intelligente'
     },
     process: {
-      title: 'Processo Assembly',
-      subtitle: 'Un approccio strutturato per raccogliere, validare e articolare il feedback della community in richieste professionali di sviluppo.',
+      title: 'Processo Strutturato',
+      subtitle: 'Un approccio metodico per raccogliere, validare e articolare il feedback della community in richieste professionali di sviluppo.',
       collection: {
         title: 'Raccolta',
         description: 'I rappresentanti dei regni raccolgono preoccupazioni e proposte della community attraverso canali strutturati.'
@@ -191,7 +191,7 @@ export const translations: Record<Language, Translations> = {
       }
     },
     aiProcess: {
-      title: 'Processo AI Assembly',
+      title: 'Processo AI Intelligente',
       subtitle: 'Come l\'intelligenza artificiale trasforma il feedback della community in richieste professionali',
       capabilities: 'Capacità dell\'AI',
       benefits: 'Perché l\'AI è Essenziale'
@@ -310,8 +310,8 @@ export const translations: Record<Language, Translations> = {
       aiAggregation: 'Intelligent Aggregation'
     },
     process: {
-      title: 'Assembly Process',
-      subtitle: 'A structured approach to collecting, validating, and articulating community feedback into professional development requests.',
+      title: 'Structured Process',
+      subtitle: 'A methodical approach to collecting, validating, and articulating community feedback into professional development requests.',
       collection: {
         title: 'Collection',
         description: 'Kingdom representatives gather community concerns and proposals through structured channels.'
@@ -330,7 +330,7 @@ export const translations: Record<Language, Translations> = {
       }
     },
     aiProcess: {
-      title: 'AI Assembly Process',
+      title: 'Intelligent AI Process',
       subtitle: 'How artificial intelligence transforms community feedback into professional requests',
       capabilities: 'AI Capabilities',
       benefits: 'Why AI is Essential'

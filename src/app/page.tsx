@@ -8,6 +8,7 @@ import { RequestCard } from '@/components/requests/RequestCard'
 import { KingdomsTable } from '@/components/kingdoms/KingdomsTable'
 import { AIProcessFlow } from '@/components/ai/AIProcessFlow'
 import { RepresentativeApplicationForm } from '@/components/forms/RepresentativeApplicationForm'
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver'
 import { getTranslations, type Language } from '@/lib/translations'
 import type { KingdomStats } from '@/types'
 
@@ -194,6 +195,9 @@ export default function Home() {
   const [language, setLanguage] = useState<Language>('it')
   const [showRepresentativeForm, setShowRepresentativeForm] = useState(false)
   const t = getTranslations(language)
+  
+  // Initialize intersection observer for fade-in animations
+  useIntersectionObserver()
 
   // Load language preference from localStorage on mount
   useEffect(() => {
@@ -224,7 +228,7 @@ export default function Home() {
   }))
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 fade-in-on-load">
       <Header 
         language={language}
         translations={t}
@@ -281,7 +285,7 @@ export default function Home() {
             <div className="mt-12 animate-fade-in-up animation-delay-400 flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 micro-bounce"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 micro-bounce btn-focus"
               >
                 {t.header.submitRequest}
               </Button>
@@ -289,7 +293,7 @@ export default function Home() {
                 size="lg" 
                 variant="outline"
                 onClick={() => setShowRepresentativeForm(true)}
-                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 micro-bounce"
+                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 micro-bounce btn-focus"
               >
                 {t.header.becomeRepresentative}
               </Button>
@@ -300,7 +304,7 @@ export default function Home() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Process Overview */}
-        <section id="process" className="mb-20">
+        <section id="process" className="mb-20 fade-in-observer">
           <div className="text-center mb-12 animate-fade-in-up">
             <h2 className="text-3xl font-bold text-gray-900">{t.process.title}</h2>
             <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
@@ -352,8 +356,8 @@ export default function Home() {
         </section>
 
         {/* Problem Statement Section */}
-        <section className="mb-20 animate-fade-in-up">
-          <Card className="border-0 shadow-lg bg-gradient-to-r from-red-50 to-orange-50 hover:shadow-xl transition-shadow duration-300">
+        <section className="mb-20 fade-in-observer">
+          <Card className="border-0 shadow-lg bg-gradient-to-r from-red-50 to-orange-50 hover:shadow-xl transition-shadow duration-300 card-focus" tabIndex={0}>
             <CardContent className="pt-12 pb-12">
               <div className="text-center mb-12">
                 <h3 className="text-3xl font-bold text-gray-900 mb-6">Il Problema dei Social Media</h3>
@@ -448,17 +452,17 @@ export default function Home() {
         </section>
 
         {/* AI Process Flow */}
-        <section id="ai-process" className="mb-20">
+        <section id="ai-process" className="mb-20 fade-in-observer">
           <AIProcessFlow translations={t} />
         </section>
 
         {/* Kingdoms Table */}
-        <section id="kingdoms" className="mb-20">
+        <section id="kingdoms" className="mb-20 fade-in-observer">
           <KingdomsTable kingdoms={mockKingdoms} translations={t} />
         </section>
 
         {/* Current Requests */}
-        <section id="requests" className="mb-20">
+        <section id="requests" className="mb-20 fade-in-observer">
           <div className="flex items-center justify-between mb-10 animate-fade-in-up">
             <div>
               <h2 className="text-3xl font-bold text-gray-900">{t.requests.title}</h2>
@@ -466,7 +470,7 @@ export default function Home() {
                 {t.requests.subtitle}
               </p>
             </div>
-            <Button size="lg" className="hover:scale-105 transition-transform">
+            <Button size="lg" className="hover:scale-105 transition-transform btn-focus">
               {t.requests.submitNew}
             </Button>
           </div>
@@ -481,8 +485,8 @@ export default function Home() {
         </section>
 
         {/* Assembly Principles */}
-        <section className="mb-20 animate-fade-in-up">
-          <Card className="border-0 shadow-lg bg-gradient-to-r from-blue-50 to-indigo-50 hover:shadow-xl transition-shadow duration-300">
+        <section className="mb-20 fade-in-observer">
+          <Card className="border-0 shadow-lg bg-gradient-to-r from-blue-50 to-indigo-50 hover:shadow-xl transition-shadow duration-300 card-focus" tabIndex={0}>
             <CardContent className="pt-12 pb-12">
               <div className="text-center mb-12">
                 <h3 className="text-3xl font-bold text-gray-900 mb-6">{t.principles.title}</h3>

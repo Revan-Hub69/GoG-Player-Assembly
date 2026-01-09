@@ -27,25 +27,25 @@ export function Header({ className, language, translations, onLanguageChange }: 
           <nav className="hidden md:flex items-center space-x-8">
             <a 
               href="#process" 
-              className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+              className="text-gray-600 hover:text-gray-900 font-medium transition-colors focus-enhanced rounded-md px-2 py-1"
             >
               {translations.header.process}
             </a>
             <a 
               href="#ai-process" 
-              className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+              className="text-gray-600 hover:text-gray-900 font-medium transition-colors focus-enhanced rounded-md px-2 py-1"
             >
               {translations.header.aiProcess}
             </a>
             <a 
               href="#kingdoms" 
-              className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+              className="text-gray-600 hover:text-gray-900 font-medium transition-colors focus-enhanced rounded-md px-2 py-1"
             >
               {translations.header.kingdoms}
             </a>
             <a 
               href="#requests" 
-              className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+              className="text-gray-600 hover:text-gray-900 font-medium transition-colors focus-enhanced rounded-md px-2 py-1"
             >
               {translations.header.requests}
             </a>
@@ -53,7 +53,7 @@ export function Header({ className, language, translations, onLanguageChange }: 
               currentLanguage={language}
               onLanguageChange={onLanguageChange}
             />
-            <Button variant="outline" size="sm" className="hover:scale-105 transition-transform">
+            <Button variant="outline" size="sm" className="hover:scale-105 transition-transform btn-focus">
               {translations.header.submitRequest}
             </Button>
           </nav>
