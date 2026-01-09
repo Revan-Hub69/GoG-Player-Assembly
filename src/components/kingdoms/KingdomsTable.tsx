@@ -23,71 +23,71 @@ export function KingdomsTable({ kingdoms, translations, className }: KingdomsTab
 
   return (
     <>
-      <Card className={`card-enhanced interactive-hover cursor-pointer ${className || ''}`} onClick={() => setShowModal(true)}>
+      <Card className={`bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer ${className || ''}`} onClick={() => setShowModal(true)}>
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-gray-900 flex items-center justify-between">
+          <CardTitle className="text-lg font-semibold text-slate-900 flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
-              <span>Regni Partecipanti</span>
+              <span>Kingdom Participation</span>
             </div>
-            <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </CardTitle>
-          <CardDescription className="text-lg">
-            Clicca per vedere tutti i regni partecipanti e candidarti come rappresentante
+          <CardDescription className="text-sm text-slate-600">
+            View all participating kingdoms and apply for representative positions
           </CardDescription>
         </CardHeader>
         
         <CardContent>
           {/* Quick Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-4 rounded-xl text-center hover:scale-105 transition-transform">
-              <div className="text-2xl font-bold text-blue-600">{kingdoms.length}</div>
-              <div className="text-sm text-blue-700 font-medium">Regni Totali</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+            <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center">
+              <div className="text-xl font-bold text-slate-900">{kingdoms.length}</div>
+              <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">Total</div>
             </div>
-            <div className="bg-gradient-to-r from-green-50 to-green-100 p-4 rounded-xl text-center hover:scale-105 transition-transform">
-              <div className="text-2xl font-bold text-green-600">{activeKingdoms.length}</div>
-              <div className="text-sm text-green-700 font-medium">Attivi</div>
+            <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center">
+              <div className="text-xl font-bold text-green-600">{activeKingdoms.length}</div>
+              <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">Active</div>
             </div>
-            <div className="bg-gradient-to-r from-purple-50 to-purple-100 p-4 rounded-xl text-center hover:scale-105 transition-transform">
-              <div className="text-2xl font-bold text-purple-600">
+            <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center">
+              <div className="text-xl font-bold text-blue-600">
                 {kingdoms.filter(k => k.representative_name).length}
               </div>
-              <div className="text-sm text-purple-700 font-medium">Con Rappresentante</div>
+              <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">Represented</div>
             </div>
-            <div className="bg-gradient-to-r from-orange-50 to-orange-100 p-4 rounded-xl text-center hover:scale-105 transition-transform">
-              <div className="text-2xl font-bold text-orange-600">{totalProposals}</div>
-              <div className="text-sm text-orange-700 font-medium">Proposte Totali</div>
+            <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center">
+              <div className="text-xl font-bold text-slate-900">{totalProposals}</div>
+              <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">Proposals</div>
             </div>
           </div>
 
           {/* Preview of top kingdoms */}
-          <div className="space-y-3 mb-6">
-            <h4 className="font-semibold text-gray-900 flex items-center space-x-2">
-              <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+          <div className="space-y-2 mb-6">
+            <h4 className="font-medium text-slate-900 text-sm flex items-center space-x-2">
+              <svg className="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span>Regni Più Attivi</span>
+              <span>Most Active Kingdoms</span>
             </h4>
             {activeKingdoms.slice(0, 3).map((kingdom, index) => (
-              <div key={kingdom.server_id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <div key={kingdom.server_id} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-200">
                 <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                  <div className="w-6 h-6 bg-slate-700 rounded-lg flex items-center justify-center text-white font-mono text-xs">
                     {kingdom.kingdom_name.charAt(0).toUpperCase()}
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900 text-sm">{kingdom.kingdom_name}</p>
-                    <p className="text-xs text-gray-500">{kingdom.region}</p>
+                    <p className="font-medium text-slate-900 text-sm">{kingdom.kingdom_name}</p>
+                    <p className="text-xs text-slate-500">{kingdom.region}</p>
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-bold text-gray-900">{kingdom.proposals_submitted}</p>
-                  <p className="text-xs text-gray-500">proposte</p>
+                  <p className="text-sm font-semibold text-slate-900">{kingdom.proposals_submitted}</p>
+                  <p className="text-xs text-slate-500">proposals</p>
                 </div>
               </div>
             ))}
@@ -95,18 +95,18 @@ export function KingdomsTable({ kingdoms, translations, className }: KingdomsTab
 
           {/* CTA Section */}
           {availableSlots.length > 0 && (
-            <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-xl border border-green-200 mb-4">
+            <div className="bg-slate-900 p-4 rounded-lg border border-slate-700 mb-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">
-                    🎯 {availableSlots.length} Slot Disponibili
+                  <h4 className="font-semibold text-white mb-1 text-sm">
+                    {availableSlots.length} Representative Positions Available
                   </h4>
-                  <p className="text-sm text-gray-600">
-                    Regni in cerca di rappresentante democratico
+                  <p className="text-xs text-slate-300">
+                    Democratic representation system requires kingdom delegates
                   </p>
                 </div>
-                <Badge className="bg-green-100 text-green-800 border-green-200 animate-pulse">
-                  Candidati!
+                <Badge className="bg-blue-600 text-white border-blue-500 text-xs px-2 py-1">
+                  Apply
                 </Badge>
               </div>
             </div>
@@ -114,14 +114,14 @@ export function KingdomsTable({ kingdoms, translations, className }: KingdomsTab
 
           {/* Action Button */}
           <Button 
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] btn-focus"
+            className="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2 rounded-md shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 text-sm"
             onClick={(e) => {
               e.stopPropagation()
               setShowModal(true)
             }}
           >
             <div className="flex items-center justify-center space-x-2">
-              <span>Vedi Tutti i Regni</span>
+              <span>View All Kingdoms</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>

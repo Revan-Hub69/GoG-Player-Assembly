@@ -228,7 +228,7 @@ export default function Home() {
   }))
 
   return (
-    <div className="min-h-screen bg-gray-50 fade-in-on-load">
+    <div className="min-h-screen bg-slate-50 fade-in-on-load">
       <Header 
         language={language}
         translations={t}
@@ -236,47 +236,41 @@ export default function Home() {
       />
 
       {/* Hero Section */}
-      <section className="bg-white py-20 relative overflow-hidden">
-        {/* Enhanced background with particles */}
-        <div className="absolute inset-0 particles-bg opacity-30"></div>
+      <section className="bg-white py-20 relative overflow-hidden border-b border-slate-200">
+        {/* Subtle tech background */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23374151' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23334155' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}></div>
         </div>
-        
-        {/* Floating elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-20 animate-float"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full opacity-20 animate-float animation-delay-200"></div>
-        <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full opacity-20 animate-float animation-delay-400"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <div className="animate-fade-in-up">
-              <h1 className="text-5xl font-bold text-gray-900 sm:text-6xl lg:text-7xl mb-6">
-                <span className="gradient-text typing-animation">{t.hero.title}</span>
+              <h1 className="text-4xl font-bold text-slate-900 sm:text-5xl lg:text-6xl mb-6">
+                <span className="bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">{t.hero.title}</span>
               </h1>
               <div className="stagger-fade-in">
-                <p className="mt-6 text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed high-contrast">
+                <p className="mt-6 text-lg text-slate-600 max-w-4xl mx-auto leading-relaxed">
                   {t.hero.subtitle}
                 </p>
               </div>
             </div>
-            <div className="mt-12 flex items-center justify-center space-x-6 text-sm text-gray-500 animate-fade-in-up animation-delay-200">
-              <div className="flex items-center space-x-2 hover:text-blue-600 transition-colors group">
-                <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse group-hover:animate-glow"></div>
+            <div className="mt-12 flex items-center justify-center space-x-8 text-sm text-slate-500 animate-fade-in-up animation-delay-200">
+              <div className="flex items-center space-x-2 hover:text-slate-700 transition-colors group">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                 <span className="font-medium">{t.hero.democraticProcess}</span>
               </div>
-              <div className="flex items-center space-x-2 hover:text-green-600 transition-colors group">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse animation-delay-100 group-hover:animate-glow"></div>
+              <div className="flex items-center space-x-2 hover:text-slate-700 transition-colors group">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                 <span className="font-medium">{t.hero.technicalValidation}</span>
               </div>
-              <div className="flex items-center space-x-2 hover:text-purple-600 transition-colors group">
-                <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse animation-delay-200 group-hover:animate-glow"></div>
+              <div className="flex items-center space-x-2 hover:text-slate-700 transition-colors group">
+                <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                 <span className="font-medium">{t.hero.professionalCommunication}</span>
               </div>
-              <div className="flex items-center space-x-2 hover:text-orange-600 transition-colors group">
-                <div className="w-3 h-3 bg-orange-500 rounded-full animate-pulse animation-delay-300 group-hover:animate-glow"></div>
+              <div className="flex items-center space-x-2 hover:text-slate-700 transition-colors group">
+                <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                 <span className="font-medium">{t.hero.aiAggregation}</span>
               </div>
             </div>
@@ -285,7 +279,7 @@ export default function Home() {
             <div className="mt-12 animate-fade-in-up animation-delay-400 flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 micro-bounce btn-focus"
+                className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 text-sm font-medium rounded-md shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
               >
                 {t.header.submitRequest}
               </Button>
@@ -293,7 +287,7 @@ export default function Home() {
                 size="lg" 
                 variant="outline"
                 onClick={() => setShowRepresentativeForm(true)}
-                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 micro-bounce btn-focus"
+                className="border border-slate-300 text-slate-700 hover:bg-slate-50 px-8 py-3 text-sm font-medium rounded-md shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
               >
                 {t.header.becomeRepresentative}
               </Button>
