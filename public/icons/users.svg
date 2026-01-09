@@ -1,15 +1,6 @@
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="usersGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#1D4ED8;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <!-- First person -->
-  <circle cx="9" cy="7" r="3" fill="url(#usersGradient)"/>
-  <path d="M3 20 Q3 16 9 16 Q15 16 15 20" fill="url(#usersGradient)" opacity="0.8"/>
-  
-  <!-- Second person (overlapping) -->
-  <circle cx="15" cy="7" r="3" fill="url(#usersGradient)" opacity="0.9"/>
-  <path d="M9 20 Q9 16 15 16 Q21 16 21 20" fill="url(#usersGradient)" opacity="0.7"/>
+  <path d="M16 21V19C16 17.9391 15.5786 16.9217 14.8284 16.1716C14.0783 15.4214 13.0609 15 12 15H6C4.93913 15 3.92172 15.4214 3.17157 16.1716C2.42143 16.9217 2 17.9391 2 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M22 21V19C22 18.1332 21.7044 17.2863 21.1614 16.5922C20.6184 15.8981 19.8581 15.3957 19 15.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16 3.13C16.8604 3.35031 17.623 3.85274 18.1676 4.54905C18.7122 5.24536 19.0078 6.09441 19.0078 6.965C19.0078 7.83559 18.7122 8.68464 18.1676 9.38095C17.623 10.0773 16.8604 10.5797 16 10.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
