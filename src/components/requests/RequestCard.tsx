@@ -76,9 +76,12 @@ export function RequestCard({ request, translations, className }: RequestCardPro
                 {translations.status[request.status]}
               </Badge>
               <Badge 
-                className="bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 border-purple-200 hover:scale-105 transition-transform"
+                className="bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 border-purple-200 hover:scale-105 transition-transform flex items-center space-x-1"
               >
-                🤖 {translations.requests.aiAggregated}
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+                <span>{translations.requests.aiAggregated}</span>
               </Badge>
             </div>
             <CardTitle className="text-xl font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">

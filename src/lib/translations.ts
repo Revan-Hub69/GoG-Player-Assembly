@@ -9,6 +9,7 @@ export interface Translations {
     kingdoms: string
     aiProcess: string
     submitRequest: string
+    becomeRepresentative: string
   }
   // Hero
   hero: {
@@ -158,15 +159,16 @@ export const translations: Record<Language, Translations> = {
       representatives: 'Rappresentanti',
       kingdoms: 'Regni',
       aiProcess: 'AI Process',
-      submitRequest: 'Invia Richiesta'
+      submitRequest: 'Invia Richiesta',
+      becomeRepresentative: 'Diventa Rappresentante'
     },
     hero: {
       title: 'GoG Player Assembly',
-      subtitle: 'Piattaforma strutturata per il feedback della community che trasforma le preoccupazioni dei giocatori in richieste tecnicamente valide e attuabili per gli sviluppatori tramite intelligenza artificiale.',
-      democraticProcess: 'Processo Democratico',
-      technicalValidation: 'Validazione Tecnica',
-      professionalCommunication: 'Comunicazione Professionale',
-      aiAggregation: 'Aggregazione AI'
+      subtitle: 'Piattaforma strutturata che trasforma il feedback della community in richieste tecnicamente valide per gli sviluppatori. Elimina il rumore dei social media attraverso rappresentanza democratica e aggregazione intelligente.',
+      democraticProcess: 'Rappresentanza Democratica',
+      technicalValidation: 'Validazione Tecnica AI',
+      professionalCommunication: 'Comunicazione Strutturata',
+      aiAggregation: 'Aggregazione Intelligente'
     },
     process: {
       title: 'Processo Assembly',
@@ -296,15 +298,16 @@ export const translations: Record<Language, Translations> = {
       representatives: 'Representatives',
       kingdoms: 'Kingdoms',
       aiProcess: 'AI Process',
-      submitRequest: 'Submit Request'
+      submitRequest: 'Submit Request',
+      becomeRepresentative: 'Become Representative'
     },
     hero: {
       title: 'GoG Player Assembly',
-      subtitle: 'Structured community feedback platform transforming player concerns into technically sound, actionable requests for game developers through artificial intelligence.',
-      democraticProcess: 'Democratic Process',
-      technicalValidation: 'Technical Validation',
-      professionalCommunication: 'Professional Communication',
-      aiAggregation: 'AI Aggregation'
+      subtitle: 'Structured platform transforming community feedback into technically valid requests for developers. Eliminates social media noise through democratic representation and intelligent aggregation.',
+      democraticProcess: 'Democratic Representation',
+      technicalValidation: 'AI Technical Validation',
+      professionalCommunication: 'Structured Communication',
+      aiAggregation: 'Intelligent Aggregation'
     },
     process: {
       title: 'Assembly Process',

@@ -7,6 +7,7 @@ import { Header } from '@/components/layout/Header'
 import { RequestCard } from '@/components/requests/RequestCard'
 import { KingdomsTable } from '@/components/kingdoms/KingdomsTable'
 import { AIProcessFlow } from '@/components/ai/AIProcessFlow'
+import { RepresentativeApplicationForm } from '@/components/forms/RepresentativeApplicationForm'
 import { getTranslations, type Language } from '@/lib/translations'
 import type { KingdomStats } from '@/types'
 
@@ -191,6 +192,7 @@ const mockKingdoms: KingdomStats[] = [
 
 export default function Home() {
   const [language, setLanguage] = useState<Language>('it')
+  const [showRepresentativeForm, setShowRepresentativeForm] = useState(false)
   const t = getTranslations(language)
 
   // Load language preference from localStorage on mount
@@ -248,11 +250,13 @@ export default function Home() {
           <div className="text-center">
             <div className="animate-fade-in-up">
               <h1 className="text-5xl font-bold text-gray-900 sm:text-6xl lg:text-7xl mb-6">
-                <span className="gradient-text">{t.hero.title}</span>
+                <span className="gradient-text typing-animation">{t.hero.title}</span>
               </h1>
-              <p className="mt-6 text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                {t.hero.subtitle}
-              </p>
+              <div className="stagger-fade-in">
+                <p className="mt-6 text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed high-contrast">
+                  {t.hero.subtitle}
+                </p>
+              </div>
             </div>
             <div className="mt-12 flex items-center justify-center space-x-6 text-sm text-gray-500 animate-fade-in-up animation-delay-200">
               <div className="flex items-center space-x-2 hover:text-blue-600 transition-colors group">
@@ -274,12 +278,20 @@ export default function Home() {
             </div>
             
             {/* Call to action */}
-            <div className="mt-12 animate-fade-in-up animation-delay-400">
+            <div className="mt-12 animate-fade-in-up animation-delay-400 flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 micro-bounce"
               >
                 {t.header.submitRequest}
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                onClick={() => setShowRepresentativeForm(true)}
+                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 micro-bounce"
+              >
+                {t.header.becomeRepresentative}
               </Button>
             </div>
           </div>
@@ -337,6 +349,102 @@ export default function Home() {
               </p>
             </div>
           </div>
+        </section>
+
+        {/* Problem Statement Section */}
+        <section className="mb-20 animate-fade-in-up">
+          <Card className="border-0 shadow-lg bg-gradient-to-r from-red-50 to-orange-50 hover:shadow-xl transition-shadow duration-300">
+            <CardContent className="pt-12 pb-12">
+              <div className="text-center mb-12">
+                <h3 className="text-3xl font-bold text-gray-900 mb-6">Il Problema dei Social Media</h3>
+                <p className="text-lg text-gray-600 max-w-4xl mx-auto">
+                  I canali social tradizionali creano rumore, frustrazione e feedback inutilizzabile. Il GoG Player Assembly risolve questi problemi strutturali.
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-12">
+                {/* Problems */}
+                <div>
+                  <h4 className="text-xl font-semibold text-red-700 mb-6 flex items-center">
+                    <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                    </svg>
+                    Problemi Attuali
+                  </h4>
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                      <div>
+                        <h5 className="font-medium text-gray-900">Rumore Sociale</h5>
+                        <p className="text-gray-600 text-sm">Migliaia di messaggi non strutturati rendono impossibile identificare feedback utile</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                      <div>
+                        <h5 className="font-medium text-gray-900">Flame e Tossicità</h5>
+                        <p className="text-gray-600 text-sm">Discussioni degenerano in conflitti personali invece di feedback costruttivo</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                      <div>
+                        <h5 className="font-medium text-gray-900">Voci Dominanti</h5>
+                        <p className="text-gray-600 text-sm">Regni più grandi o giocatori più attivi soffocano le voci dei regni più piccoli</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                      <div>
+                        <h5 className="font-medium text-gray-900">Feedback Inutilizzabile</h5>
+                        <p className="text-gray-600 text-sm">Richieste vaghe e non tecniche che gli sviluppatori non possono implementare</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Solutions */}
+                <div>
+                  <h4 className="text-xl font-semibold text-green-700 mb-6 flex items-center">
+                    <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Soluzioni Assembly
+                  </h4>
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                      <div>
+                        <h5 className="font-medium text-gray-900">Struttura Organizzata</h5>
+                        <p className="text-gray-600 text-sm">Canali dedicati e processi strutturati per raccogliere feedback mirato</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                      <div>
+                        <h5 className="font-medium text-gray-900">Comunicazione Professionale</h5>
+                        <p className="text-gray-600 text-sm">Linguaggio tecnico e obiettivi chiari eliminano conflitti emotivi</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                      <div>
+                        <h5 className="font-medium text-gray-900">Rappresentanza Equa</h5>
+                        <p className="text-gray-600 text-sm">Un rappresentante per regno garantisce che ogni community abbia voce</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                      <div>
+                        <h5 className="font-medium text-gray-900">Validazione Tecnica</h5>
+                        <p className="text-gray-600 text-sm">AI trasforma richieste in specifiche implementabili dagli sviluppatori</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </section>
 
         {/* AI Process Flow */}
@@ -453,6 +561,14 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      
+      {/* Representative Application Form Modal */}
+      {showRepresentativeForm && (
+        <RepresentativeApplicationForm
+          translations={t}
+          onClose={() => setShowRepresentativeForm(false)}
+        />
+      )}
     </div>
   )
 }
