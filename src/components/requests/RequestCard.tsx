@@ -1,5 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import type { Translations } from '@/lib/translations'
 
 interface CommunityRequest {
   id: string
@@ -16,10 +17,11 @@ interface CommunityRequest {
 
 interface RequestCardProps {
   request: CommunityRequest
+  translations: Translations
   className?: string
 }
 
-export function RequestCard({ request, className }: RequestCardProps) {
+export function RequestCard({ request, translations, className }: RequestCardProps) {
   const getCategoryColor = (category: CommunityRequest['category']): string => {
     const colors: Record<CommunityRequest['category'], string> = {
       gameplay: 'bg-blue-100 text-blue-800 border-blue-200',
@@ -50,36 +52,6 @@ export function RequestCard({ request, className }: RequestCardProps) {
     return colors[status]
   }
 
-  const getCategoryLabel = (category: CommunityRequest['category']): string => {
-    const labels: Record<CommunityRequest['category'], string> = {
-      gameplay: 'Gameplay',
-      economy: 'Economia',
-      social: 'Sociale',
-      technical: 'Tecnico'
-    }
-    return labels[category]
-  }
-
-  const getPriorityLabel = (priority: CommunityRequest['priority']): string => {
-    const labels: Record<CommunityRequest['priority'], string> = {
-      critical: 'Critica',
-      high: 'Alta',
-      medium: 'Media',
-      low: 'Bassa'
-    }
-    return labels[priority]
-  }
-
-  const getStatusLabel = (status: CommunityRequest['status']): string => {
-    const labels: Record<CommunityRequest['status'], string> = {
-      draft: 'Bozza',
-      review: 'In Revisione',
-      submitted: 'Inviata',
-      acknowledged: 'Riconosciuta'
-    }
-    return labels[status]
-  }
-
   return (
     <Card className={`border-0 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.01] ${className || ''}`}>
       <CardHeader>
@@ -90,18 +62,18 @@ export function RequestCard({ request, className }: RequestCardProps) {
                 variant="outline" 
                 className={`${getCategoryColor(request.category)} hover:scale-105 transition-transform`}
               >
-                {getCategoryLabel(request.category)}
+                {translations.categories[request.category]}
               </Badge>
               <Badge 
                 variant="outline" 
                 className={`${getPriorityColor(request.priority)} hover:scale-105 transition-transform`}
               >
-                Priorità {getPriorityLabel(request.priority)}
+                Priorità {translations.priorities[request.priority]}
               </Badge>
               <Badge 
                 className={`${getStatusColor(request.status)} hover:scale-105 transition-transform`}
               >
-                {getStatusLabel(request.status)}
+                {translations.status[request.status]}
               </Badge>
             </div>
             <CardTitle className="text-xl font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">
@@ -117,28 +89,28 @@ export function RequestCard({ request, className }: RequestCardProps) {
       <CardContent>
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold text-gray-900 mb-2">Dettagli Tecnici</h4>
+            <h4 className="font-semibold text-gray-900 mb-2">{translations.requests.technicalDetails}</h4>
             <p className="text-sm text-gray-600 mb-4">
               {request.technicalDetails}
             </p>
-            <h4 className="font-semibold text-gray-900 mb-2">Risultato Atteso</h4>
+            <h4 className="font-semibold text-gray-900 mb-2">{translations.requests.expectedOutcome}</h4>
             <p className="text-sm text-gray-600">
               {request.expectedOutcome}
             </p>
           </div>
           <div>
-            <h4 className="font-semibold text-gray-900 mb-2">Dettagli Richiesta</h4>
+            <h4 className="font-semibold text-gray-900 mb-2">{translations.requests.requestDetails}</h4>
             <dl className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <dt className="text-gray-500">Inviata da:</dt>
+                <dt className="text-gray-500">{translations.requests.submittedBy}</dt>
                 <dd className="text-gray-900">{request.submittedBy}</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-gray-500">Data:</dt>
+                <dt className="text-gray-500">{translations.requests.date}</dt>
                 <dd className="text-gray-900">{request.submittedDate}</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-gray-500">ID Richiesta:</dt>
+                <dt className="text-gray-500">{translations.requests.requestId}</dt>
                 <dd className="text-gray-900 font-mono">#{request.id.padStart(4, '0')}</dd>
               </div>
             </dl>

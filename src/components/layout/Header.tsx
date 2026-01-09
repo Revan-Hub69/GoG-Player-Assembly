@@ -1,11 +1,16 @@
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
+import { LanguageToggle } from '@/components/ui/language-toggle'
+import type { Language, Translations } from '@/lib/translations'
 
 interface HeaderProps {
   className?: string
+  language: Language
+  translations: Translations
+  onLanguageChange: (language: Language) => void
 }
 
-export function Header({ className }: HeaderProps) {
+export function Header({ className, language, translations, onLanguageChange }: HeaderProps) {
   return (
     <header className={`bg-white border-b border-gray-200 ${className || ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,24 +29,36 @@ export function Header({ className }: HeaderProps) {
               href="#process" 
               className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
             >
-              Processo
+              {translations.header.process}
             </a>
             <a 
               href="#requests" 
               className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
             >
-              Richieste
+              {translations.header.requests}
             </a>
             <a 
               href="#representatives" 
               className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
             >
-              Rappresentanti
+              {translations.header.representatives}
             </a>
+            <LanguageToggle 
+              currentLanguage={language}
+              onLanguageChange={onLanguageChange}
+            />
             <Button variant="outline" size="sm" className="hover:scale-105 transition-transform">
-              Invia Richiesta
+              {translations.header.submitRequest}
             </Button>
           </nav>
+          
+          {/* Mobile menu button */}
+          <div className="md:hidden flex items-center space-x-2">
+            <LanguageToggle 
+              currentLanguage={language}
+              onLanguageChange={onLanguageChange}
+            />
+          </div>
         </div>
       </div>
     </header>
