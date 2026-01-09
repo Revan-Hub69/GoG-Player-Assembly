@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  /* GOG Brand Colors */
+  --gog-primary: #1e40af;
+  --gog-secondary: #dc2626;
+  --gog-accent: #f59e0b;
+  --gog-success: #059669;
+  --gog-warning: #d97706;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-gog-primary: var(--gog-primary);
+  --color-gog-secondary: var(--gog-secondary);
+  --color-gog-accent: var(--gog-accent);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Enhanced animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Improved focus states for accessibility */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+}
+
+/* GOG-themed components */
+.gog-card {
+  @apply bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300;
+}
+
+.gog-button-primary {
+  @apply bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 focus-ring transition-colors;
+}
+
+.gog-button-secondary {
+  @apply bg-gray-200 text-gray-700 px-4 py-2 rounded-md font-medium hover:bg-gray-300 focus-ring transition-colors;
+}
+
+/* Prose styles for markdown content */
+.prose {
+  @apply text-gray-700 leading-relaxed;
+}
+
+.prose h1 {
+  @apply text-3xl font-bold text-gray-900 mb-6 mt-8 first:mt-0;
+}
+
+.prose h2 {
+  @apply text-2xl font-semibold text-gray-900 mb-4 mt-6;
+}
+
+.prose h3 {
+  @apply text-xl font-semibold text-gray-900 mb-3 mt-5;
+}
+
+.prose p {
+  @apply mb-4 text-base leading-7;
+}
+
+.prose strong {
+  @apply font-semibold text-gray-900;
+}
+
+.prose ul {
+  @apply mb-4 pl-6;
+}
+
+.prose li {
+  @apply mb-2 list-disc;
+}
+
+.prose hr {
+  @apply my-8 border-gray-300;
+}
+
+.prose em {
+  @apply italic;
+}
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+  .prose h1 {
+    @apply text-2xl;
+  }
+  
+  .prose h2 {
+    @apply text-xl;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up {
+    animation: none;
+  }
+  
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,138 @@
+[
+  {
+    "id": "communication-improvements",
+    "title": {
+      "it": "Miglioramenti nella Comunicazione",
+      "en": "Communication Improvements"
+    },
+    "summary": {
+      "it": "Creare canali di comunicazione più diretti tra sviluppatori e comunità per feedback strutturato, seguendo best practice di aziende come Riot Games e Blizzard.",
+      "en": "Create more direct communication channels between developers and community for structured feedback, following best practices from companies like Riot Games and Blizzard."
+    },
+    "details": {
+      "it": [
+        "Blog mensile degli sviluppatori con roadmap e aggiornamenti (come Riot's Dev Blog)",
+        "Sessioni Q&A trimestrali con la comunità in live streaming",
+        "Canale ufficiale Discord/Forum per feedback su nuove feature",
+        "Trasparenza sui tempi di sviluppo delle correzioni con timeline pubbliche",
+        "Sistema di voto della comunità per priorità delle feature",
+        "Risposta ufficiale alle proposte della community entro 30 giorni"
+      ],
+      "en": [
+        "Monthly developer blog with roadmap and updates (like Riot's Dev Blog)",
+        "Quarterly Q&A sessions with the community via live streaming",
+        "Official Discord/Forum channel for feedback on new features",
+        "Transparency on development timelines for fixes with public roadmaps",
+        "Community voting system for feature priorities",
+        "Official response to community proposals within 30 days"
+      ]
+    },
+    "support": "alto",
+    "lastUpdated": "2026-01-09",
+    "status": "active",
+    "communityVotes": 847,
+    "serverSupport": "89%"
+  },
+  {
+    "id": "gameplay-balance",
+    "title": {
+      "it": "Bilanciamento del Gameplay",
+      "en": "Gameplay Balance"
+    },
+    "summary": {
+      "it": "Rivedere il bilanciamento tra giocatori free-to-play e pay-to-win per mantenere competitività e retention, basandosi su dati di engagement della community.",
+      "en": "Review balance between free-to-play and pay-to-win players to maintain competitiveness and retention, based on community engagement data."
+    },
+    "details": {
+      "it": [
+        "Limitare il gap di potere tra spender e F2P a un massimo del 300% (attualmente 500%+)",
+        "Introdurre meccaniche skill-based oltre al power (strategia, timing, coordinazione)",
+        "Eventi dedicati ai giocatori F2P con rewards competitivi",
+        "Sistema di matchmaking più equo basato su power + skill rating",
+        "Caps temporali sui boost per evitare vantaggi eccessivi",
+        "Analisi mensile dei dati di retention F2P vs P2W"
+      ],
+      "en": [
+        "Limit power gap between spenders and F2P to maximum 300% (currently 500%+)",
+        "Introduce skill-based mechanics beyond power (strategy, timing, coordination)",
+        "Events dedicated to F2P players with competitive rewards",
+        "More fair matchmaking system based on power + skill rating",
+        "Temporal caps on boosts to avoid excessive advantages",
+        "Monthly analysis of F2P vs P2W retention data"
+      ]
+    },
+    "support": "medio",
+    "lastUpdated": "2026-01-09",
+    "status": "active",
+    "communityVotes": 623,
+    "serverSupport": "67%"
+  },
+  {
+    "id": "server-management",
+    "title": {
+      "it": "Gestione dei Server",
+      "en": "Server Management"
+    },
+    "summary": {
+      "it": "Migliorare la gestione dei server morti e il merge per mantenere comunità attive, con processo trasparente e coinvolgimento della community.",
+      "en": "Improve management of dead servers and merging to maintain active communities, with transparent process and community involvement."
+    },
+    "details": {
+      "it": [
+        "Criteri chiari per il merge dei server (popolazione <100 attivi per 30 giorni)",
+        "Comunicazione anticipata sui cambiamenti (60 giorni di preavviso)",
+        "Preservare le alleanze durante i merge con sistema di migrazione",
+        "Sistema di voto della comunità per i merge (maggioranza 60%)",
+        "Compensazioni per perdite durante il merge (risorse, posizioni)",
+        "Dashboard pubblica con statistiche server per trasparenza"
+      ],
+      "en": [
+        "Clear criteria for server merging (population <100 active for 30 days)",
+        "Advance communication on changes (60 days notice)",
+        "Preserve alliances during merges with migration system",
+        "Community voting system for merges (60% majority)",
+        "Compensations for losses during merge (resources, positions)",
+        "Public dashboard with server statistics for transparency"
+      ]
+    },
+    "support": "alto",
+    "lastUpdated": "2026-01-09",
+    "status": "active",
+    "communityVotes": 934,
+    "serverSupport": "91%"
+  },
+  {
+    "id": "event-improvements",
+    "title": {
+      "it": "Miglioramenti agli Eventi",
+      "en": "Event Improvements"
+    },
+    "summary": {
+      "it": "Rendere gli eventi più inclusivi e bilanciati per tutti i tipi di giocatori, con focus su skill e partecipazione oltre alla spesa.",
+      "en": "Make events more inclusive and balanced for all player types, focusing on skill and participation beyond spending."
+    },
+    "details": {
+      "it": [
+        "Eventi skill-based che premiano strategia e coordinazione",
+        "Bracket separati per F2P e spender negli eventi competitivi",
+        "Rewards progressivi basati su partecipazione, non solo ranking finale",
+        "Eventi cooperativi che richiedono collaborazione tra alleanze",
+        "Rotazione eventi per favorire diversi fusi orari",
+        "Feedback post-evento con survey della community"
+      ],
+      "en": [
+        "Skill-based events that reward strategy and coordination",
+        "Separate brackets for F2P and spenders in competitive events",
+        "Progressive rewards based on participation, not just final ranking",
+        "Cooperative events requiring collaboration between alliances",
+        "Event rotation to favor different time zones",
+        "Post-event feedback with community surveys"
+      ]
+    },
+    "support": "alto",
+    "lastUpdated": "2026-01-09",
+    "status": "active",
+    "communityVotes": 756,
+    "serverSupport": "82%"
+  }
+]

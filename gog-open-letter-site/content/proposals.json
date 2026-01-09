@@ -1,0 +1,86 @@
+[
+  {
+    "id": "communication-improvements",
+    "title": {
+      "it": "Miglioramenti nella Comunicazione",
+      "en": "Communication Improvements"
+    },
+    "summary": {
+      "it": "Creare canali di comunicazione più diretti tra sviluppatori e comunità per feedback strutturato.",
+      "en": "Create more direct communication channels between developers and community for structured feedback."
+    },
+    "details": {
+      "it": [
+        "Blog mensile degli sviluppatori con roadmap e aggiornamenti",
+        "Sessioni Q&A trimestrali con la comunità",
+        "Canale ufficiale per feedback su nuove feature",
+        "Trasparenza sui tempi di sviluppo delle correzioni"
+      ],
+      "en": [
+        "Monthly developer blog with roadmap and updates",
+        "Quarterly Q&A sessions with the community",
+        "Official channel for feedback on new features",
+        "Transparency on development timelines for fixes"
+      ]
+    },
+    "support": "alto",
+    "lastUpdated": "2026-01-09",
+    "status": "active"
+  },
+  {
+    "id": "gameplay-balance",
+    "title": {
+      "it": "Bilanciamento del Gameplay",
+      "en": "Gameplay Balance"
+    },
+    "summary": {
+      "it": "Rivedere il bilanciamento tra giocatori free-to-play e pay-to-win per mantenere competitività.",
+      "en": "Review balance between free-to-play and pay-to-win players to maintain competitiveness."
+    },
+    "details": {
+      "it": [
+        "Limitare il gap di potere tra spender e F2P",
+        "Introdurre meccaniche skill-based oltre al power",
+        "Eventi dedicati ai giocatori F2P",
+        "Sistema di matchmaking più equo"
+      ],
+      "en": [
+        "Limit power gap between spenders and F2P",
+        "Introduce skill-based mechanics beyond power",
+        "Events dedicated to F2P players",
+        "More fair matchmaking system"
+      ]
+    },
+    "support": "medio",
+    "lastUpdated": "2026-01-09",
+    "status": "active"
+  },
+  {
+    "id": "server-management",
+    "title": {
+      "it": "Gestione dei Server",
+      "en": "Server Management"
+    },
+    "summary": {
+      "it": "Migliorare la gestione dei server morti e il merge per mantenere comunità attive.",
+      "en": "Improve management of dead servers and merging to maintain active communities."
+    },
+    "details": {
+      "it": [
+        "Criteri chiari per il merge dei server",
+        "Comunicazione anticipata sui cambiamenti",
+        "Preservare le alleanze durante i merge",
+        "Sistema di voto della comunità per i merge"
+      ],
+      "en": [
+        "Clear criteria for server merging",
+        "Advance communication on changes",
+        "Preserve alliances during merges",
+        "Community voting system for merges"
+      ]
+    },
+    "support": "alto",
+    "lastUpdated": "2026-01-09",
+    "status": "active"
+  }
+]

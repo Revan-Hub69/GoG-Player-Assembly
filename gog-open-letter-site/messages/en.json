@@ -1,0 +1,42 @@
+{
+  "site": {
+    "title": "Open Letter to Guns of Glory Developers",
+    "description": "Community initiative to improve dialogue with developers",
+    "lastUpdated": "Last updated",
+    "disclaimer": "Unofficial community initiative. Constructive tone, no protests or boycotts."
+  },
+  "navigation": {
+    "letter": "Letter",
+    "proposals": "Proposals",
+    "contribute": "Contribute"
+  },
+  "letter": {
+    "title": "Our Letter",
+    "cta": "How to Contribute",
+    "ctaText": "Want to add a proposal or improve the letter? Open a Pull Request on GitHub or contact your server representative."
+  },
+  "proposals": {
+    "title": "Current Proposals",
+    "support": "Support",
+    "updated": "Updated on",
+    "status": "Status",
+    "readMore": "Read details",
+    "readLess": "Hide details",
+    "noProposals": "No active proposals at the moment."
+  },
+  "footer": {
+    "contact": "Contact",
+    "github": "GitHub Repository",
+    "disclaimer": "Not affiliated with Guns of Glory developers/publisher"
+  },
+  "status": {
+    "active": "Active",
+    "draft": "Draft",
+    "archived": "Archived"
+  },
+  "support": {
+    "alto": "High",
+    "medio": "Medium",
+    "basso": "Low"
+  }
+}

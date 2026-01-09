@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -57,15 +57,29 @@ const proposals: Proposal[] = [
 ]
 
 export default function Home() {
-  const [votes, setVotes] = useState<Vote[]>([])
-  const [proposalStats, setProposalStats] = useState<Proposal[]>(proposals)
+  // Inizializza votes direttamente dal localStorage usando lazy initializer
+  const [votes, setVotes] = useState<Vote[]>(() => {
+    if (typeof window !== 'undefined') {
+      const savedVotes = localStorage.getItem('gog-premium-votes')
+      if (savedVotes) {
+        try {
+          return JSON.parse(savedVotes)
+        } catch (error) {
+          console.error('Error parsing saved votes:', error)
+        }
+      }
+    }
+    return []
+  })
+  
   const [votingData, setVotingData] = useState<{[key: string]: {kingdom: string, score: string}}>({})
   const [isLoading, setIsLoading] = useState(true)
   const [hoveredProposal, setHoveredProposal] = useState<string | null>(null)
 
-  const updateProposalStats = (allVotes: Vote[]) => {
-    const updatedProposals = proposals.map(proposal => {
-      const proposalVotes = allVotes.filter(vote => vote.proposalId === proposal.id)
+  // Calcola le statistiche usando useMemo invece di useEffect
+  const proposalStats = useMemo(() => {
+    return proposals.map(proposal => {
+      const proposalVotes = votes.filter(vote => vote.proposalId === proposal.id)
       const totalVotes = proposalVotes.length
       const averageImpact = totalVotes > 0 
         ? proposalVotes.reduce((sum, vote) => sum + vote.impactScore, 0) / totalVotes
@@ -77,21 +91,16 @@ export default function Home() {
         totalVotes
       }
     })
-    setProposalStats(updatedProposals)
-  }
+  }, [votes]) // Si ricalcola solo quando votes cambia
 
-  // Carica i voti dal localStorage
+  // Solo per il loading timer (nessun setState di dati)
   useEffect(() => {
-    const savedVotes = localStorage.getItem('gog-premium-votes')
-    if (savedVotes) {
-      const parsedVotes = JSON.parse(savedVotes)
-      setVotes(parsedVotes)
-      updateProposalStats(parsedVotes)
-    }
-    
     // Simula loading per effetto premium
-    setTimeout(() => setIsLoading(false), 1500)
-  }, [])
+    const loadingTimer = setTimeout(() => setIsLoading(false), 1500)
+    
+    // Cleanup
+    return () => clearTimeout(loadingTimer)
+  }, []) // Esegue solo al mount
 
   const handleVote = (proposalId: string) => {
     const data = votingData[proposalId]
@@ -114,7 +123,7 @@ export default function Home() {
     const updatedVotes = [...votes, newVote]
     setVotes(updatedVotes)
     localStorage.setItem('gog-premium-votes', JSON.stringify(updatedVotes))
-    updateProposalStats(updatedVotes)
+    // Rimossa updateProposalStats - ora usa useMemo automaticamente
 
     // Reset form con animazione
     setVotingData(prev => ({
