@@ -145,10 +145,10 @@ export function KingdomsModal({ kingdoms, translations, onClose, className }: Ki
               </div>
               <div>
                 <h2 className="text-lg font-semibold text-slate-900" id="modal-title">
-                  Kingdom Participation Registry
+                  {translations.modals.participatingKingdoms.title}
                 </h2>
                 <p className="text-sm text-slate-500">
-                  Democratic representation system overview
+                  {translations.modals.participatingKingdoms.subtitle}
                 </p>
               </div>
             </div>
@@ -171,21 +171,21 @@ export function KingdomsModal({ kingdoms, translations, onClose, className }: Ki
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
                 <div className="text-2xl font-bold text-slate-900">{kingdoms.length}</div>
-                <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">Total Kingdoms</div>
+                <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">{translations.modals.participatingKingdoms.stats.total}</div>
               </div>
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
                 <div className="text-2xl font-bold text-green-600">{activeKingdoms.length}</div>
-                <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">Active</div>
+                <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">{translations.modals.participatingKingdoms.stats.active}</div>
               </div>
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
                 <div className="text-2xl font-bold text-blue-600">
                   {kingdoms.filter(k => k.representative_name).length}
                 </div>
-                <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">Represented</div>
+                <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">{translations.modals.participatingKingdoms.stats.represented}</div>
               </div>
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
                 <div className="text-2xl font-bold text-amber-600">{availableSlots.length}</div>
-                <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">Available Slots</div>
+                <div className="text-xs text-slate-500 uppercase tracking-wide font-medium">{translations.modals.participatingKingdoms.stats.available}</div>
               </div>
             </div>
 
@@ -198,10 +198,10 @@ export function KingdomsModal({ kingdoms, translations, onClose, className }: Ki
                       <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
-                      <span>Representative Position Available</span>
+                      <span>{translations.modals.participatingKingdoms.cta.title}</span>
                     </h3>
                     <p className="text-xs text-slate-300 mb-3">
-                      {availableSlots.length} kingdoms require democratic representation
+                      {availableSlots.length} {translations.modals.participatingKingdoms.cta.description}
                     </p>
                     <div className="flex items-center space-x-4 text-xs text-slate-400">
                       <div className="flex items-center space-x-1">
@@ -218,7 +218,7 @@ export function KingdomsModal({ kingdoms, translations, onClose, className }: Ki
                     onClick={() => setShowApplicationForm(true)}
                     className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-sm font-medium rounded-md shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900"
                   >
-                    Apply Now
+                    {translations.modals.participatingKingdoms.cta.apply}
                   </Button>
                 </div>
               </div>
@@ -270,8 +270,8 @@ export function KingdomsModal({ kingdoms, translations, onClose, className }: Ki
                               </svg>
                             </div>
                             <div>
-                              <p className="font-medium text-xs">Available</p>
-                              <p className="text-xs text-slate-500">No representative</p>
+                              <p className="font-medium text-xs">{translations.modals.participatingKingdoms.representative.available}</p>
+                              <p className="text-xs text-slate-500">{translations.modals.participatingKingdoms.representative.noRepresentative}</p>
                             </div>
                           </div>
                         )}

@@ -9,7 +9,7 @@ export interface Translations {
     kingdoms: string
     aiProcess: string
     submitRequest: string
-    becomeRepresentative: string
+    supportProject: string
   }
   // Hero
   hero: {
@@ -149,6 +149,116 @@ export interface Translations {
   footer: {
     description: string
   }
+  // Project costs
+  projectCosts: {
+    title: string
+    subtitle: string
+    infrastructure: {
+      title: string
+      description: string
+      cost: string
+    }
+    ai: {
+      title: string
+      description: string
+      cost: string
+    }
+    development: {
+      title: string
+      description: string
+      cost: string
+    }
+    total: {
+      title: string
+      monthly: string
+      description: string
+    }
+    support: {
+      title: string
+      description: string
+      paypal: string
+    }
+  }
+  // Representative form
+  representativeForm: {
+    title: string
+    subtitle: string
+    personalInfo: {
+      title: string
+      subtitle: string
+      playerName: string
+      email: string
+      emailDescription: string
+      discordTag: string
+      discordDescription: string
+    }
+    kingdomInfo: {
+      title: string
+      subtitle: string
+      kingdomName: string
+      region: string
+      selectRegion: string
+      democraticNote: {
+        title: string
+        description: string
+      }
+    }
+    experience: {
+      title: string
+      subtitle: string
+      gameExperience: string
+      gameExperiencePlaceholder: string
+      motivation: string
+      motivationPlaceholder: string
+      availability: string
+      selectAvailability: string
+      availabilityOptions: {
+        high: string
+        medium: string
+        low: string
+      }
+      approvalProcess: {
+        title: string
+        description: string
+      }
+    }
+    navigation: {
+      back: string
+      next: string
+      submit: string
+      submitting: string
+    }
+  }
+  // Modals
+  modals: {
+    activeRequests: {
+      title: string
+      subtitle: string
+      noRequests: string
+      viewDetails: string
+      close: string
+    }
+    participatingKingdoms: {
+      title: string
+      subtitle: string
+      stats: {
+        total: string
+        active: string
+        represented: string
+        available: string
+      }
+      representative: {
+        available: string
+        noRepresentative: string
+      }
+      cta: {
+        title: string
+        description: string
+        apply: string
+      }
+      close: string
+    }
+  }
 }
 
 export const translations: Record<Language, Translations> = {
@@ -160,7 +270,7 @@ export const translations: Record<Language, Translations> = {
       kingdoms: 'Regni',
       aiProcess: 'AI Process',
       submitRequest: 'Invia Richiesta',
-      becomeRepresentative: 'Diventa Rappresentante'
+      supportProject: 'Supporta il Progetto'
     },
     hero: {
       title: 'GoG Player Assembly',
@@ -289,6 +399,113 @@ export const translations: Record<Language, Translations> = {
     },
     footer: {
       description: 'GoG Player Assembly - Trasformare il feedback della community in richieste di sviluppo attuabili tramite AI'
+    },
+    projectCosts: {
+      title: 'Costi del Progetto',
+      subtitle: 'Trasparenza completa sui costi minimi necessari per mantenere operativo il GoG Player Assembly',
+      infrastructure: {
+        title: 'Infrastruttura Server',
+        description: 'Hosting database, API, sistema di autenticazione e backup automatici',
+        cost: '€25/mese'
+      },
+      ai: {
+        title: 'Servizi AI',
+        description: 'Elaborazione linguaggio naturale, aggregazione proposte e analisi sentiment',
+        cost: '€35/mese'
+      },
+      development: {
+        title: 'Manutenzione',
+        description: 'Aggiornamenti sicurezza, bug fixes e miglioramenti funzionalità',
+        cost: '€15/mese'
+      },
+      total: {
+        title: 'Costo Totale Mensile',
+        monthly: '€75/mese',
+        description: 'Costi minimi per mantenere la piattaforma operativa e garantire un servizio affidabile alla community'
+      },
+      support: {
+        title: 'Supporta il Progetto',
+        description: 'Il tuo contributo aiuta a mantenere la piattaforma gratuita e accessibile a tutti i regni',
+        paypal: 'Dona con PayPal'
+      }
+    },
+    representativeForm: {
+      title: 'Candidatura Rappresentante',
+      subtitle: 'Diventa il rappresentante ufficiale del tuo regno',
+      personalInfo: {
+        title: 'Informazioni Personali',
+        subtitle: 'Fornisci i tuoi dati di contatto per l\'attivazione',
+        playerName: 'Nome Giocatore *',
+        email: 'Email *',
+        emailDescription: 'Utilizzata per comunicazioni ufficiali e attivazione account',
+        discordTag: 'Discord Tag *',
+        discordDescription: 'Per coordinamento e comunicazioni rapide con altri rappresentanti'
+      },
+      kingdomInfo: {
+        title: 'Informazioni Regno',
+        subtitle: 'Dettagli sul regno che rappresenterai',
+        kingdomName: 'Nome Regno *',
+        region: 'Regione Server *',
+        selectRegion: 'Seleziona regione',
+        democraticNote: {
+          title: 'Rappresentanza Democratica',
+          description: 'Ogni regno può avere un solo rappresentante per garantire equità e voce democratica a tutti i regni, indipendentemente dalla dimensione.'
+        }
+      },
+      experience: {
+        title: 'Esperienza e Motivazione',
+        subtitle: 'Raccontaci perché vuoi rappresentare il tuo regno',
+        gameExperience: 'Esperienza di Gioco *',
+        gameExperiencePlaceholder: 'Descrivi la tua esperienza con Guns of Glory (tempo di gioco, ruoli ricoperti, conoscenza del gioco...)',
+        motivation: 'Motivazione *',
+        motivationPlaceholder: 'Perché vuoi diventare rappresentante? Come pensi di contribuire al miglioramento del gioco?',
+        availability: 'Disponibilità *',
+        selectAvailability: 'Seleziona disponibilità',
+        availabilityOptions: {
+          high: 'Alta (più di 2 ore al giorno)',
+          medium: 'Media (1-2 ore al giorno)',
+          low: 'Bassa (meno di 1 ora al giorno)'
+        },
+        approvalProcess: {
+          title: 'Processo di Approvazione',
+          description: 'La tua candidatura sarà valutata dal team Assembly. Riceverai una risposta via email entro 48 ore con le istruzioni per l\'attivazione.'
+        }
+      },
+      navigation: {
+        back: 'Indietro',
+        next: 'Avanti',
+        submit: 'Invia Candidatura',
+        submitting: 'Invio in corso...'
+      }
+    },
+    modals: {
+      activeRequests: {
+        title: 'Richieste Attive',
+        subtitle: 'Tutte le richieste aggregate dall\'AI attualmente in elaborazione',
+        noRequests: 'Nessuna richiesta attiva al momento',
+        viewDetails: 'Visualizza Dettagli',
+        close: 'Chiudi'
+      },
+      participatingKingdoms: {
+        title: 'Regni Partecipanti',
+        subtitle: 'Panoramica del sistema di rappresentanza democratica',
+        stats: {
+          total: 'Regni Totali',
+          active: 'Attivi',
+          represented: 'Rappresentati',
+          available: 'Slot Disponibili'
+        },
+        representative: {
+          available: 'Disponibile',
+          noRepresentative: 'Nessun rappresentante'
+        },
+        cta: {
+          title: 'Posizione Rappresentante Disponibile',
+          description: 'regni richiedono rappresentanza democratica',
+          apply: 'Candidati Ora'
+        },
+        close: 'Chiudi'
+      }
     }
   },
   en: {
@@ -299,7 +516,7 @@ export const translations: Record<Language, Translations> = {
       kingdoms: 'Kingdoms',
       aiProcess: 'AI Process',
       submitRequest: 'Submit Request',
-      becomeRepresentative: 'Become Representative'
+      supportProject: 'Support Project'
     },
     hero: {
       title: 'GoG Player Assembly',
@@ -428,6 +645,113 @@ export const translations: Record<Language, Translations> = {
     },
     footer: {
       description: 'GoG Player Assembly - Transforming community feedback into actionable development requests through AI'
+    },
+    projectCosts: {
+      title: 'Project Costs',
+      subtitle: 'Complete transparency on minimum costs required to keep the GoG Player Assembly operational',
+      infrastructure: {
+        title: 'Server Infrastructure',
+        description: 'Database hosting, APIs, authentication system and automatic backups',
+        cost: '€25/month'
+      },
+      ai: {
+        title: 'AI Services',
+        description: 'Natural language processing, proposal aggregation and sentiment analysis',
+        cost: '€35/month'
+      },
+      development: {
+        title: 'Maintenance',
+        description: 'Security updates, bug fixes and feature improvements',
+        cost: '€15/month'
+      },
+      total: {
+        title: 'Total Monthly Cost',
+        monthly: '€75/month',
+        description: 'Minimum costs to keep the platform operational and ensure reliable service to the community'
+      },
+      support: {
+        title: 'Support the Project',
+        description: 'Your contribution helps keep the platform free and accessible to all kingdoms',
+        paypal: 'Donate with PayPal'
+      }
+    },
+    representativeForm: {
+      title: 'Representative Application',
+      subtitle: 'Become the official representative of your kingdom',
+      personalInfo: {
+        title: 'Personal Information',
+        subtitle: 'Provide your contact details for activation',
+        playerName: 'Player Name *',
+        email: 'Email *',
+        emailDescription: 'Used for official communications and account activation',
+        discordTag: 'Discord Tag *',
+        discordDescription: 'For coordination and quick communications with other representatives'
+      },
+      kingdomInfo: {
+        title: 'Kingdom Information',
+        subtitle: 'Details about the kingdom you will represent',
+        kingdomName: 'Kingdom Name *',
+        region: 'Server Region *',
+        selectRegion: 'Select region',
+        democraticNote: {
+          title: 'Democratic Representation',
+          description: 'Each kingdom can have only one representative to ensure equity and democratic voice for all kingdoms, regardless of size.'
+        }
+      },
+      experience: {
+        title: 'Experience and Motivation',
+        subtitle: 'Tell us why you want to represent your kingdom',
+        gameExperience: 'Game Experience *',
+        gameExperiencePlaceholder: 'Describe your experience with Guns of Glory (playtime, roles held, game knowledge...)',
+        motivation: 'Motivation *',
+        motivationPlaceholder: 'Why do you want to become a representative? How do you think you can contribute to improving the game?',
+        availability: 'Availability *',
+        selectAvailability: 'Select availability',
+        availabilityOptions: {
+          high: 'High (more than 2 hours per day)',
+          medium: 'Medium (1-2 hours per day)',
+          low: 'Low (less than 1 hour per day)'
+        },
+        approvalProcess: {
+          title: 'Approval Process',
+          description: 'Your application will be evaluated by the Assembly team. You will receive a response via email within 48 hours with activation instructions.'
+        }
+      },
+      navigation: {
+        back: 'Back',
+        next: 'Next',
+        submit: 'Submit Application',
+        submitting: 'Submitting...'
+      }
+    },
+    modals: {
+      activeRequests: {
+        title: 'Active Requests',
+        subtitle: 'All AI-aggregated requests currently being processed',
+        noRequests: 'No active requests at the moment',
+        viewDetails: 'View Details',
+        close: 'Close'
+      },
+      participatingKingdoms: {
+        title: 'Participating Kingdoms',
+        subtitle: 'Overview of the democratic representation system',
+        stats: {
+          total: 'Total Kingdoms',
+          active: 'Active',
+          represented: 'Represented',
+          available: 'Available Slots'
+        },
+        representative: {
+          available: 'Available',
+          noRepresentative: 'No representative'
+        },
+        cta: {
+          title: 'Representative Position Available',
+          description: 'kingdoms require democratic representation',
+          apply: 'Apply Now'
+        },
+        close: 'Close'
+      }
     }
   }
 }

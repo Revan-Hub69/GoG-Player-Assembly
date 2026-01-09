@@ -8,7 +8,6 @@ import type { Translations } from '@/lib/translations'
 interface RepresentativeApplicationFormProps {
   translations: Translations
   onClose: () => void
-  className?: string
 }
 
 interface FormData {
@@ -22,7 +21,7 @@ interface FormData {
   availability: string
 }
 
-export function RepresentativeApplicationForm({ onClose }: RepresentativeApplicationFormProps) {
+export function RepresentativeApplicationForm({ translations, onClose }: RepresentativeApplicationFormProps) {
   const [formData, setFormData] = useState<FormData>({
     playerName: '',
     email: '',
@@ -172,10 +171,10 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
               </div>
               <div>
                 <h2 className="text-lg font-semibold text-slate-900" id="form-title">
-                  Candidatura Rappresentante
+                  {translations.representativeForm.title}
                 </h2>
                 <p className="text-sm text-slate-500">
-                  Diventa il rappresentante ufficiale del tuo regno
+                  {translations.representativeForm.subtitle}
                 </p>
               </div>
             </div>
@@ -219,14 +218,14 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
               {currentStep === 1 && (
                 <div className="space-y-6 animate-fade-in-up">
                   <div className="text-center mb-6">
-                    <h3 className="text-lg font-semibold text-slate-900 mb-2">Informazioni Personali</h3>
-                    <p className="text-slate-600">Fornisci i tuoi dati di contatto per l&apos;attivazione</p>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">{translations.representativeForm.personalInfo.title}</h3>
+                    <p className="text-slate-600">{translations.representativeForm.personalInfo.subtitle}</p>
                   </div>
                   
                   <div className="space-y-4">
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Nome Giocatore *
+                        {translations.representativeForm.personalInfo.playerName}
                       </label>
                       <Input
                         type="text"
@@ -240,7 +239,7 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
                     
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Email *
+                        {translations.representativeForm.personalInfo.email}
                       </label>
                       <Input
                         type="email"
@@ -251,13 +250,13 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
                         required
                       />
                       <p className="text-xs text-slate-500 mt-1">
-                        Utilizzata per comunicazioni ufficiali e attivazione account
+                        {translations.representativeForm.personalInfo.emailDescription}
                       </p>
                     </div>
                     
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Discord Tag *
+                        {translations.representativeForm.personalInfo.discordTag}
                       </label>
                       <Input
                         type="text"
@@ -268,7 +267,7 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
                         required
                       />
                       <p className="text-xs text-slate-500 mt-1">
-                        Per coordinamento e comunicazioni rapide con altri rappresentanti
+                        {translations.representativeForm.personalInfo.discordDescription}
                       </p>
                     </div>
                   </div>
@@ -279,14 +278,14 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
               {currentStep === 2 && (
                 <div className="space-y-6 animate-fade-in-up">
                   <div className="text-center mb-6">
-                    <h3 className="text-lg font-semibold text-slate-900 mb-2">Informazioni Regno</h3>
-                    <p className="text-slate-600">Dettagli sul regno che rappresenterai</p>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">{translations.representativeForm.kingdomInfo.title}</h3>
+                    <p className="text-slate-600">{translations.representativeForm.kingdomInfo.subtitle}</p>
                   </div>
                   
                   <div className="space-y-4">
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Nome Regno *
+                        {translations.representativeForm.kingdomInfo.kingdomName}
                       </label>
                       <Input
                         type="text"
@@ -300,7 +299,7 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
                     
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Regione Server *
+                        {translations.representativeForm.kingdomInfo.region}
                       </label>
                       <select
                         value={formData.region}
@@ -308,7 +307,7 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         required
                       >
-                        <option value="">Seleziona regione</option>
+                        <option value="">{translations.representativeForm.kingdomInfo.selectRegion}</option>
                         <option value="Europa">Europa</option>
                         <option value="America">America</option>
                         <option value="Asia">Asia</option>
@@ -322,9 +321,9 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <div>
-                          <h4 className="font-medium text-blue-900">Rappresentanza Democratica</h4>
+                          <h4 className="font-medium text-blue-900">{translations.representativeForm.kingdomInfo.democraticNote.title}</h4>
                           <p className="text-sm text-blue-700 mt-1">
-                            Ogni regno può avere un solo rappresentante per garantire equità e voce democratica a tutti i regni, indipendentemente dalla dimensione.
+                            {translations.representativeForm.kingdomInfo.democraticNote.description}
                           </p>
                         </div>
                       </div>
@@ -337,19 +336,19 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
               {currentStep === 3 && (
                 <div className="space-y-6 animate-fade-in-up">
                   <div className="text-center mb-6">
-                    <h3 className="text-lg font-semibold text-slate-900 mb-2">Esperienza e Motivazione</h3>
-                    <p className="text-slate-600">Raccontaci perché vuoi rappresentare il tuo regno</p>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">{translations.representativeForm.experience.title}</h3>
+                    <p className="text-slate-600">{translations.representativeForm.experience.subtitle}</p>
                   </div>
                   
                   <div className="space-y-4">
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Esperienza di Gioco *
+                        {translations.representativeForm.experience.gameExperience}
                       </label>
                       <textarea
                         value={formData.experience}
                         onChange={(e) => handleInputChange('experience', e.target.value)}
-                        placeholder="Descrivi la tua esperienza con Guns of Glory (tempo di gioco, ruoli ricoperti, conoscenza del gioco...)"
+                        placeholder={translations.representativeForm.experience.gameExperiencePlaceholder}
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 h-24 resize-none"
                         required
                       />
@@ -357,12 +356,12 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
                     
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Motivazione *
+                        {translations.representativeForm.experience.motivation}
                       </label>
                       <textarea
                         value={formData.motivation}
                         onChange={(e) => handleInputChange('motivation', e.target.value)}
-                        placeholder="Perché vuoi diventare rappresentante? Come pensi di contribuire al miglioramento del gioco?"
+                        placeholder={translations.representativeForm.experience.motivationPlaceholder}
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 h-24 resize-none"
                         required
                       />
@@ -370,7 +369,7 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
                     
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Disponibilità *
+                        {translations.representativeForm.experience.availability}
                       </label>
                       <select
                         value={formData.availability}
@@ -378,10 +377,10 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         required
                       >
-                        <option value="">Seleziona disponibilità</option>
-                        <option value="alta">Alta (più di 2 ore al giorno)</option>
-                        <option value="media">Media (1-2 ore al giorno)</option>
-                        <option value="bassa">Bassa (meno di 1 ora al giorno)</option>
+                        <option value="">{translations.representativeForm.experience.selectAvailability}</option>
+                        <option value="alta">{translations.representativeForm.experience.availabilityOptions.high}</option>
+                        <option value="media">{translations.representativeForm.experience.availabilityOptions.medium}</option>
+                        <option value="bassa">{translations.representativeForm.experience.availabilityOptions.low}</option>
                       </select>
                     </div>
                   </div>
@@ -392,9 +391,9 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                       <div>
-                        <h4 className="font-medium text-green-900">Processo di Approvazione</h4>
+                        <h4 className="font-medium text-green-900">{translations.representativeForm.experience.approvalProcess.title}</h4>
                         <p className="text-sm text-green-700 mt-1">
-                          La tua candidatura sarà valutata dal team Assembly. Riceverai una risposta via email entro 48 ore con le istruzioni per l&apos;attivazione.
+                          {translations.representativeForm.experience.approvalProcess.description}
                         </p>
                       </div>
                     </div>
@@ -418,7 +417,7 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              <span>Indietro</span>
+              <span>{translations.representativeForm.navigation.back}</span>
             </Button>
             
             {currentStep < totalSteps ? (
@@ -428,7 +427,7 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
                 disabled={!isStepValid()}
                 className="flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:ring-2 focus:ring-blue-500"
               >
-                <span>Avanti</span>
+                <span>{translations.representativeForm.navigation.next}</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -443,14 +442,14 @@ export function RepresentativeApplicationForm({ onClose }: RepresentativeApplica
                 {isSubmitting ? (
                   <>
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    <span>Invio in corso...</span>
+                    <span>{translations.representativeForm.navigation.submitting}</span>
                   </>
                 ) : (
                   <>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                     </svg>
-                    <span>Invia Candidatura</span>
+                    <span>{translations.representativeForm.navigation.submit}</span>
                   </>
                 )}
               </Button>

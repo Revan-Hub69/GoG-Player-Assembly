@@ -54,7 +54,7 @@ export function Header({ className, language, translations, onLanguageChange }: 
               onLanguageChange={onLanguageChange}
             />
             <Button variant="outline" size="sm" className="hover:scale-105 transition-transform btn-focus">
-              {translations.header.submitRequest}
+              {translations.header.supportProject}
             </Button>
           </nav>
           

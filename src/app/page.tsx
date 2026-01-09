@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Header } from '@/components/layout/Header'
@@ -8,6 +8,7 @@ import { RequestCard } from '@/components/requests/RequestCard'
 import { KingdomsTable } from '@/components/kingdoms/KingdomsTable'
 import { AIProcessFlow } from '@/components/ai/AIProcessFlow'
 import { RepresentativeApplicationForm } from '@/components/forms/RepresentativeApplicationForm'
+import { ActiveRequestsModal } from '@/components/modals/ActiveRequestsModal'
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver'
 import { getTranslations, type Language } from '@/lib/translations'
 import type { KingdomStats } from '@/types'
@@ -192,20 +193,22 @@ const mockKingdoms: KingdomStats[] = [
 ]
 
 export default function Home() {
-  const [language, setLanguage] = useState<Language>('it')
+  // Initialize language from localStorage using lazy initialization
+  const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window !== 'undefined') {
+      const savedLanguage = localStorage.getItem('gog-assembly-language') as Language
+      if (savedLanguage && (savedLanguage === 'it' || savedLanguage === 'en')) {
+        return savedLanguage
+      }
+    }
+    return 'it'
+  })
   const [showRepresentativeForm, setShowRepresentativeForm] = useState(false)
+  const [showActiveRequestsModal, setShowActiveRequestsModal] = useState(false)
   const t = getTranslations(language)
   
   // Initialize intersection observer for fade-in animations
   useIntersectionObserver()
-
-  // Load language preference from localStorage on mount
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('gog-assembly-language') as Language
-    if (savedLanguage && (savedLanguage === 'it' || savedLanguage === 'en')) {
-      setLanguage(savedLanguage)
-    }
-  }, [])
 
   // Save language preference to localStorage when changed
   const handleLanguageChange = (newLanguage: Language) => {
@@ -279,9 +282,10 @@ export default function Home() {
             <div className="mt-12 animate-fade-in-up animation-delay-400 flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
+                onClick={() => setShowActiveRequestsModal(true)}
                 className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 text-sm font-medium rounded-md shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
               >
-                {t.header.submitRequest}
+                {t.header.requests}
               </Button>
               <Button 
                 size="lg" 
@@ -289,7 +293,7 @@ export default function Home() {
                 onClick={() => setShowRepresentativeForm(true)}
                 className="border border-slate-300 text-slate-700 hover:bg-slate-50 px-8 py-3 text-sm font-medium rounded-md shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
               >
-                {t.header.becomeRepresentative}
+                {t.representativeForm.title}
               </Button>
             </div>
           </div>
@@ -450,6 +454,85 @@ export default function Home() {
           <AIProcessFlow translations={t} />
         </section>
 
+        {/* Project Costs Section */}
+        <section id="project-costs" className="mb-20 fade-in-observer">
+          <Card className="border-0 shadow-lg bg-gradient-to-r from-green-50 to-emerald-50 hover:shadow-xl transition-shadow duration-300 card-focus" tabIndex={0}>
+            <CardContent className="pt-12 pb-12">
+              <div className="text-center mb-12">
+                <h3 className="text-3xl font-bold text-slate-900 mb-6">{t.projectCosts.title}</h3>
+                <p className="text-lg text-slate-600 max-w-4xl mx-auto">
+                  {t.projectCosts.subtitle}
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-3 gap-8 mb-12">
+                {/* Infrastructure */}
+                <div className="text-center group">
+                  <div className="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 transition-all duration-300 group-hover:scale-110">
+                    <svg className="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+                    </svg>
+                  </div>
+                  <h4 className="text-xl font-semibold text-slate-900 mb-4">{t.projectCosts.infrastructure.title}</h4>
+                  <p className="text-slate-600 mb-4">{t.projectCosts.infrastructure.description}</p>
+                  <div className="text-2xl font-bold text-blue-600">{t.projectCosts.infrastructure.cost}</div>
+                </div>
+
+                {/* AI Services */}
+                <div className="text-center group">
+                  <div className="w-20 h-20 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-purple-200 transition-all duration-300 group-hover:scale-110">
+                    <svg className="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                  <h4 className="text-xl font-semibold text-slate-900 mb-4">{t.projectCosts.ai.title}</h4>
+                  <p className="text-slate-600 mb-4">{t.projectCosts.ai.description}</p>
+                  <div className="text-2xl font-bold text-purple-600">{t.projectCosts.ai.cost}</div>
+                </div>
+
+                {/* Development */}
+                <div className="text-center group">
+                  <div className="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-green-200 transition-all duration-300 group-hover:scale-110">
+                    <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <h4 className="text-xl font-semibold text-slate-900 mb-4">{t.projectCosts.development.title}</h4>
+                  <p className="text-slate-600 mb-4">{t.projectCosts.development.description}</p>
+                  <div className="text-2xl font-bold text-green-600">{t.projectCosts.development.cost}</div>
+                </div>
+              </div>
+
+              {/* Total Cost */}
+              <div className="bg-slate-900 rounded-2xl p-8 text-center text-white mb-8">
+                <h4 className="text-2xl font-bold mb-4">{t.projectCosts.total.title}</h4>
+                <div className="text-4xl font-bold text-green-400 mb-4">{t.projectCosts.total.monthly}</div>
+                <p className="text-slate-300 max-w-2xl mx-auto">
+                  {t.projectCosts.total.description}
+                </p>
+              </div>
+
+              {/* Support CTA */}
+              <div className="text-center">
+                <h4 className="text-2xl font-bold text-slate-900 mb-4">{t.projectCosts.support.title}</h4>
+                <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
+                  {t.projectCosts.support.description}
+                </p>
+                <Button 
+                  size="lg"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-.635 4.123zM19.35 7.715c-.79 4.155-3.27 5.605-7.232 5.605H9.98l-.635 4.123H2.47L4.944.901h7.46c2.57 0 4.578.543 5.69 1.81.454.518.692 1.068.692 1.68 0 .612-.238 1.162-.692 1.68-.79 4.155-3.27 5.605-7.232 5.605H9.98l-.635 4.123z"/>
+                  </svg>
+                  {t.projectCosts.support.paypal}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
         {/* Kingdoms Table */}
         <section id="kingdoms" className="mb-20 fade-in-observer">
           <KingdomsTable kingdoms={mockKingdoms} translations={t} />
@@ -459,23 +542,39 @@ export default function Home() {
         <section id="requests" className="mb-20 fade-in-observer">
           <div className="flex items-center justify-between mb-10 animate-fade-in-up">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900">{t.requests.title}</h2>
-              <p className="mt-2 text-lg text-gray-600">
+              <h2 className="text-3xl font-bold text-slate-900">{t.requests.title}</h2>
+              <p className="mt-2 text-lg text-slate-600">
                 {t.requests.subtitle}
               </p>
             </div>
-            <Button size="lg" className="hover:scale-105 transition-transform btn-focus">
-              {t.requests.submitNew}
+            <Button 
+              size="lg" 
+              onClick={() => setShowActiveRequestsModal(true)}
+              className="hover:scale-105 transition-transform btn-focus"
+            >
+              {t.modals.activeRequests.title}
             </Button>
           </div>
 
           <div className="space-y-8">
-            {localizedRequests.map((request, index) => (
+            {localizedRequests.slice(0, 2).map((request, index) => (
               <div key={request.id} className="animate-fade-in-up" style={{animationDelay: `${index * 100}ms`}}>
                 <RequestCard request={request} translations={t} />
               </div>
             ))}
           </div>
+
+          {localizedRequests.length > 2 && (
+            <div className="text-center mt-8">
+              <Button 
+                variant="outline"
+                onClick={() => setShowActiveRequestsModal(true)}
+                className="hover:scale-105 transition-transform"
+              >
+                {t.modals.activeRequests.viewDetails} ({localizedRequests.length - 2} {language === 'it' ? 'altre' : 'more'})
+              </Button>
+            </div>
+          )}
         </section>
 
         {/* Assembly Principles */}
@@ -565,6 +664,15 @@ export default function Home() {
         <RepresentativeApplicationForm
           translations={t}
           onClose={() => setShowRepresentativeForm(false)}
+        />
+      )}
+
+      {/* Active Requests Modal */}
+      {showActiveRequestsModal && (
+        <ActiveRequestsModal
+          requests={localizedRequests}
+          translations={t}
+          onClose={() => setShowActiveRequestsModal(false)}
         />
       )}
     </div>
